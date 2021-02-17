@@ -1,9 +1,12 @@
 
 
 #include "Framework.h"
+#include "PlayerTank.h"
 
 /* Test Framework realization */
 class MyFramework : public Framework {
+	PlayerTank player;
+	Sprite* playerSprite;
 
 public:
 
@@ -16,6 +19,9 @@ public:
 
 	virtual bool Init() {
 
+		player.setTankPosition(400, 300);
+		playerSprite = createSprite("D:\\doc\\Tanks_Sol\\Tanks_Proj\\data\\tank.png");
+
 		return true;
 	}
 
@@ -25,6 +31,12 @@ public:
 
 	virtual bool Tick() {
 		drawTestBackground();
+
+		int tankX, tankY;
+		player.getTankPosition(tankX, tankY);
+
+		drawSprite(playerSprite, tankX, tankY);
+
 		return false;
 	}
 
