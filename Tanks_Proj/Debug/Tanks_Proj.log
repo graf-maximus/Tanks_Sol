@@ -1,0 +1,4 @@
+﻿  Game.cpp
+Game.obj : error LNK2019: unresolved external symbol __imp__drawTestBackground referenced in function "public: virtual bool __thiscall MyFramework::Tick(void)" (?Tick@MyFramework@@UAE_NXZ)
+Game.obj : error LNK2019: unresolved external symbol __imp__run referenced in function _main
+D:\doc\Tanks_Sol\Debug\Tanks_Proj.exe : fatal error LNK1120: 2 unresolved externals
