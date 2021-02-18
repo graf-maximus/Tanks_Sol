@@ -2,11 +2,13 @@
 
 #include "Framework.h"
 #include "PlayerTank.h"
+#include <iostream>
 
 /* Test Framework realization */
 class MyFramework : public Framework {
-	PlayerTank player;
-	Sprite* playerSprite;
+
+	PlayerTank* player = new PlayerTank{400, 300};
+	float time = 0;
 
 public:
 
@@ -14,13 +16,12 @@ public:
 	{
 		width = 800;
 		height = 600;
-		fullscreen = false;
+		fullscreen = true;
 	}
 
 	virtual bool Init() {
 
-		player.setTankPosition(400, 300);
-		playerSprite = createSprite("D:\\doc\\Tanks_Sol\\Tanks_Proj\\data\\tank.png");
+		player->setSprite();
 
 		return true;
 	}
@@ -30,12 +31,14 @@ public:
 	}
 
 	virtual bool Tick() {
-		drawTestBackground();
+		
+		time = getTickCount() - time;
+		
+		player->moveTank(time);
 
-		int tankX, tankY;
-		player.getTankPosition(tankX, tankY);
+		time = getTickCount();
 
-		drawSprite(playerSprite, tankX, tankY);
+		player->drawPlayer();
 
 		return false;
 	}
@@ -49,14 +52,16 @@ public:
 	}
 
 	virtual void onKeyPressed(FRKey k) {
+		player->setMoveDirection(k);
 	}
 
 	virtual void onKeyReleased(FRKey k) {
+		player->setMoveDirection(FRKey::COUNT);
 	}
 
 	virtual const char* GetTitle() override
 	{
-		return "Tanks";
+		return "Tanks-Maksym_Sokorenko";
 	}
 };
 

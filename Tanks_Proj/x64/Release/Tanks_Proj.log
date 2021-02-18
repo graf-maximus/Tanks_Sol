@@ -1,7 +1,9 @@
 ﻿  Game.cpp
+D:\doc\Tanks_Sol\Tanks_Proj\Game.cpp(11,11): warning C4076: 'unsigned': cannot be used with type 'float'
+D:\doc\Tanks_Sol\Tanks_Proj\Game.cpp(37,20): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
   Generating code
-  9 of 20 functions (45.0%) were compiled, the rest were copied from previous compilation.
-    1 functions were new in current compilation
+  1 of 23 functions ( 4.3%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Tanks_Proj.vcxproj -> D:\doc\Tanks_Sol\x64\Release\Tanks_Proj.exe
