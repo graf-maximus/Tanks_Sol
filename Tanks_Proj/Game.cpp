@@ -35,14 +35,14 @@ public:
 		
 		time = getTickCount() - time;
 		
-		player->moveTank(time);
+		player->move(time);
 
-		player->drawPlayer();
+		player->draw();
 
 		if (player->getSpawnedProjectile() != nullptr)
 		{
-			player->getSpawnedProjectile()->moveProjectile(time);
-			player->getSpawnedProjectile()->drawProjectile();
+			player->getSpawnedProjectile()->move(time);
+			player->getSpawnedProjectile()->draw();
 			if (player->getSpawnedProjectile()->isProjectileOverWall())
 				player->destroyProjectile();
 		}
@@ -62,12 +62,6 @@ public:
 		case FRMouseButton::LEFT:
 			player->spawnProjectile();
 			break;	
-		case FRMouseButton::MIDDLE:
-			break;
-		case FRMouseButton::RIGHT:
-			break;
-		case FRMouseButton::COUNT:
-			break;
 		default:
 			break;
 		}
@@ -75,11 +69,11 @@ public:
 
 	virtual void onKeyPressed(FRKey k) {
 		player->setMoveDirection(k);
-		player->setTankCurrentSpeed(player->getTankSpeed());
+		player->setSpeed(player->getTankStaticSpeed());
 	}
 
 	virtual void onKeyReleased(FRKey k) {
-		player->setTankCurrentSpeed(0);
+		player->setSpeed(0);
 	}
 
 	virtual const char* GetTitle() override

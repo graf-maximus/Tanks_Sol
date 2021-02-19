@@ -1,19 +1,13 @@
 ﻿  Game.cpp
-D:\doc\Tanks_Sol\Tanks_Proj\PlayerTank.h(9,18): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\doc\Tanks_Sol\Tanks_Proj\Projectile.h(7,24): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\doc\Tanks_Sol\Tanks_Proj\PlayerTank.h(42,20): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\doc\Tanks_Sol\Tanks_Proj\Projectile.h(6,24): warning C4305: 'initializing': truncation from 'double' to 'float'
 D:\doc\Tanks_Sol\Tanks_Proj\Game.cpp(49,22): warning C4244: '=': conversion from 'unsigned int' to 'float', possible loss of data
   PlayerTank.cpp
-D:\doc\Tanks_Sol\Tanks_Proj\PlayerTank.h(9,18): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\doc\Tanks_Sol\Tanks_Proj\Projectile.h(7,24): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\doc\Tanks_Sol\Tanks_Proj\PlayerTank.cpp(41,32): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\doc\Tanks_Sol\Tanks_Proj\PlayerTank.cpp(41,26): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  Projectile.cpp
-D:\doc\Tanks_Sol\Tanks_Proj\Projectile.h(7,24): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\doc\Tanks_Sol\Tanks_Proj\Projectile.cpp(93,54): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\doc\Tanks_Sol\Tanks_Proj\Projectile.cpp(93,42): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\doc\Tanks_Sol\Tanks_Proj\PlayerTank.h(42,20): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\doc\Tanks_Sol\Tanks_Proj\Projectile.h(6,24): warning C4305: 'initializing': truncation from 'double' to 'float'
   Generating code
-  5 of 36 functions (13.9%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
+  3 of 51 functions ( 5.9%) were compiled, the rest were copied from previous compilation.
+    1 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Tanks_Proj.vcxproj -> D:\doc\Tanks_Sol\x64\Release\Tanks_Proj.exe

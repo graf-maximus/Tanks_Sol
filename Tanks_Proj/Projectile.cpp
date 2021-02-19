@@ -6,6 +6,7 @@ Projectile::Projectile(float posX, float posY, FRKey moveDirection)
 	this->moveDirection = moveDirection;
 	this->posX = posX;
 	this->posY = posY;
+	this->setSpeed(0.4);
 
 	/*int tankSpriteSizeWidth, tankSpriteSizeHeight;
 	getSpriteSize(ownerTank->getSprite(), tankSpriteSizeWidth, tankSpriteSizeHeight);
@@ -39,58 +40,13 @@ Projectile::Projectile(float posX, float posY, FRKey moveDirection)
 
 Projectile::~Projectile()
 {
-	destroySprite(projectileSprite);
-}
-
-void Projectile::getProjectilePosition(float& x, float& y)
-{
-	x = this->posX;
-	y = this->posY;
+	destroySprite(sprite);
 }
 
 void Projectile::setSprite()
 {
-	this->projectileSprite = createSprite(projectileFilePath);
-	getSpriteSize(this->projectileSprite, this->spriteSizeW, this->spriteSizeH);
-}
-
-Sprite* Projectile::getSprite()
-{
-	if (this->projectileSprite != nullptr)
-		return this->projectileSprite;
-	return nullptr;
-}
-
-void Projectile::moveProjectile(float time)
-{
-	switch (moveDirection)
-	{
-	case FRKey::RIGHT:
-		this->posX += this->projectileSpeed * time;
-		break;
-	case FRKey::LEFT:
-		this->posX -= this->projectileSpeed * time;
-		break;
-	case FRKey::DOWN:
-		this->posY += this->projectileSpeed * time;
-		break;
-	case FRKey::UP:
-		this->posY -= this->projectileSpeed * time;
-		break;
-	default:
-		break;
-	}
-}
-
-float Projectile::getProjectileSpeed()
-{
-	return this->projectileSpeed;
-}
-
-void Projectile::drawProjectile()
-{
-	if (this->projectileSprite != nullptr)
-		drawSprite(this->projectileSprite, this->posX, this->posY);
+	this->sprite = createSprite(projectileFilePath);
+	getSpriteSize(this->sprite, this->spriteSizeW, this->spriteSizeH);
 }
 
 bool Projectile::isProjectileOverWall()
