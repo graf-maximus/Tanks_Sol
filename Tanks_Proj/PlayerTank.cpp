@@ -1,26 +1,25 @@
-
 #include "PlayerTank.h"
+#include "Projectile.h"
 #include <iostream>
 
 PlayerTank::PlayerTank()
 {
 }
 
-PlayerTank::PlayerTank(int posX, int posY)
+PlayerTank::PlayerTank(float posX, float posY)
 {
 	this->posX = posX;
 	this->posY = posY;
-	this->tankSpeed = 0.07;
-	this->moveDirection = FRKey::COUNT;
+	this->moveDirection = FRKey::UP;
 }
 
-void PlayerTank::setTankPosition(int x, int y)
+void PlayerTank::setTankPosition(float x, float y)
 {
 	this->posX = x;
 	this->posY = y;
 }
 
-void PlayerTank::getTankPosition(int& x, int& y)
+void PlayerTank::getTankPosition(float& x, float& y)
 {
 	x = posX;
 	y = posY;
@@ -33,10 +32,7 @@ void PlayerTank::setSprite()
 
 Sprite* PlayerTank::getSprite()
 {
-	if (tankSprite != nullptr)
-		return tankSprite;
-	else
-		return nullptr;
+	return this->tankSprite;
 }
 
 void PlayerTank::drawPlayer()
@@ -50,27 +46,27 @@ void PlayerTank::moveTank(float time)
 	switch (moveDirection)
 	{
 	case FRKey::RIGHT: 
-		if (this->posX + this->tankSpeed * time <= 800)
-			this->posX += this->tankSpeed * time; 
+		if (this->posX + this->tankCurrentSpeed * time <= 800)
+			this->posX += this->tankCurrentSpeed * time;
 		break;
 	case FRKey::LEFT: 
-		if (this->posX - this->tankSpeed * time >= 0)
-			this->posX -= this->tankSpeed * time; 
+		if (this->posX - this->tankCurrentSpeed * time >= 0)
+			this->posX -= this->tankCurrentSpeed * time;
 		break;
 	case FRKey::DOWN:
-		if (this->posY + this->tankSpeed * time <= 600)
-			this->posY += this->tankSpeed * time; 
+		if (this->posY + this->tankCurrentSpeed * time <= 600)
+			this->posY += this->tankCurrentSpeed * time;
 		break;
 	case FRKey::UP:
-		if (this->posY - this->tankSpeed * time >= 0)
-			this->posY -= this->tankSpeed * time;
+		if (this->posY - this->tankCurrentSpeed * time >= 0)
+			this->posY -= this->tankCurrentSpeed * time;
 		break;
 	default:
 		break;
 	}
 }
 
-int PlayerTank::getTankSpeed()
+float PlayerTank::getTankSpeed()
 {
 	return tankSpeed;
 }
@@ -78,4 +74,36 @@ int PlayerTank::getTankSpeed()
 void PlayerTank::setMoveDirection(FRKey direction)
 {
 	this->moveDirection = direction;
+}
+
+void PlayerTank::spawnProjectile()
+{
+	if (spawnedProjectile == nullptr)
+		spawnedProjectile = new Projectile(posX, posY, moveDirection);
+}
+
+FRKey PlayerTank::getMoveDirection()
+{
+	return this->moveDirection;
+}
+
+Projectile* PlayerTank::getSpawnedProjectile()
+{
+	return spawnedProjectile;
+}
+
+void PlayerTank::setTankCurrentSpeed(float currentSpeed)
+{
+	this->tankCurrentSpeed = currentSpeed;
+}
+
+float PlayerTank::getTankCurrentSpeed()
+{
+	return this->tankCurrentSpeed;
+}
+
+void PlayerTank::destroyProjectile()
+{
+	delete spawnedProjectile;
+	spawnedProjectile = nullptr;
 }

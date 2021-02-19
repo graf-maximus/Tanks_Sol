@@ -2,6 +2,7 @@
 
 #include "Framework.h"
 #include "PlayerTank.h"
+#include "Projectile.h"
 #include <iostream>
 
 /* Test Framework realization */
@@ -16,7 +17,7 @@ public:
 	{
 		width = 800;
 		height = 600;
-		fullscreen = true;
+		fullscreen = false;
 	}
 
 	virtual bool Init() {
@@ -36,9 +37,17 @@ public:
 		
 		player->moveTank(time);
 
+		player->drawPlayer();
+
+		if (player->getSpawnedProjectile() != nullptr)
+		{
+			player->getSpawnedProjectile()->moveProjectile(time);
+			player->getSpawnedProjectile()->drawProjectile();
+			if (player->getSpawnedProjectile()->isProjectileOverWall())
+				player->destroyProjectile();
+		}
 		time = getTickCount();
 
-		player->drawPlayer();
 
 		return false;
 	}
@@ -48,15 +57,29 @@ public:
 	}
 
 	virtual void onMouseButtonClick(FRMouseButton button, bool isReleased) {
-
+		switch (button)
+		{
+		case FRMouseButton::LEFT:
+			player->spawnProjectile();
+			break;	
+		case FRMouseButton::MIDDLE:
+			break;
+		case FRMouseButton::RIGHT:
+			break;
+		case FRMouseButton::COUNT:
+			break;
+		default:
+			break;
+		}
 	}
 
 	virtual void onKeyPressed(FRKey k) {
 		player->setMoveDirection(k);
+		player->setTankCurrentSpeed(player->getTankSpeed());
 	}
 
 	virtual void onKeyReleased(FRKey k) {
-		player->setMoveDirection(FRKey::COUNT);
+		player->setTankCurrentSpeed(0);
 	}
 
 	virtual const char* GetTitle() override
