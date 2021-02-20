@@ -15,3 +15,14 @@ std::vector<EnemyTank*> EnemyController::getEnemyTanks()
 {
 	return std::vector<EnemyTank*>(this->enemyTanks);
 }
+
+bool EnemyController::needToSpawn(unsigned int time)
+{
+	if (time - spawnTimer >= spawnTime)
+	{
+		spawnTimer = time;
+		return true;
+	}
+
+	return false;
+}

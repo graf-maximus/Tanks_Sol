@@ -23,7 +23,6 @@ void ProjectileController::spawnProjectile(float posX, float posY, FRKey directi
 {
 	if (spawnedProjectile == nullptr)
 	{
-		std::cout << "Spawn from controller" << '\n';
 		spawnedProjectile = new Projectile(posX, posY, direction);
 		spawnedProjectile->setSprite();
 	}

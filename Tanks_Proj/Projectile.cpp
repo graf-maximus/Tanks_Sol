@@ -9,8 +9,6 @@ Projectile::Projectile(float posX, float posY, FRKey moveDirection)
 	this->posY = posY;
 	this->setSpeed(0.4);
 
-	std::cout << this->posX << '\t' << this->posY << '\n';
-
 	/*int tankSpriteSizeWidth, tankSpriteSizeHeight;
 	getSpriteSize(ownerTank->getSprite(), tankSpriteSizeWidth, tankSpriteSizeHeight);
 

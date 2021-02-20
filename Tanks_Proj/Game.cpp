@@ -49,6 +49,11 @@ public:
 			player->getProjectileController()->getSpawnedProjectile()->draw();
 		}
 
+		if (enemySpawner->needToSpawn(getTickCount()))
+		{
+			enemySpawner->spawnNewEnemy();
+		}
+
 		for (int i = 0; i < enemySpawner->getEnemyTanks().size(); i++)
 		{
 			enemySpawner->getEnemyTanks().at(i)->move(time);

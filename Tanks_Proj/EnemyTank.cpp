@@ -41,7 +41,6 @@ ProjectileController* EnemyTank::getProjectileController()
 
 void EnemyTank::spawnProjectile(float time)
 {
-	//std::cout << "Spawn from EnemyTank" << '\n';
 	if (this->getProjectileController()->getSpawnedProjectile() == nullptr)
 		this->getProjectileController()->spawnProjectile(this->posX, this->posY, this->moveDirection);
 }
