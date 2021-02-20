@@ -119,7 +119,6 @@
 
 
 #include "PlayerTank.h"
-#include "Projectile.h"
 #include <iostream>
 
 PlayerTank::PlayerTank()
@@ -135,59 +134,13 @@ PlayerTank::PlayerTank(float posX, float posY)
 
 void PlayerTank::setSprite()
 {
-	this->sprite = createSprite(tankFilePath);
+	this->sprite = createSprite(this->tankFilePath);
 }
 
-void PlayerTank::move(float time)
-{
-	//switch (moveDirection)
-	//{
-	//case FRKey::RIGHT:
-	//	if (this->posX + this->currentSpeed * time <= 800)
-	//		this->posX += this->currentSpeed * time;
-	//	break;
-	//case FRKey::LEFT:
-	//	if (this->posX - this->currentSpeed * time >= 0)
-	//		this->posX -= this->currentSpeed * time;
-	//	break;
-	//case FRKey::DOWN:
-	//	if (this->posY + this->currentSpeed * time <= 600)
-	//		this->posY += this->currentSpeed * time;
-	//	break;
-	//case FRKey::UP:
-	//	if (this->posY - this->currentSpeed * time >= 0)
-	//		this->posY -= this->currentSpeed * time;
-	//	break;
-	//default:
-	//	break;
-	//}
-
-	std::cout << "Current speed: " << this->currentSpeed << '\n';
-
-	ParentClass::move(time);
-
-	if (posX <= 0 || posX >= 800 || posY <= 0 || posX >= 600)
-		this->currentSpeed = 0;
-}
-
-float PlayerTank::getTankStaticSpeed()
-{
-	return this->staticSpeed;
-}
-
-void PlayerTank::spawnProjectile()
-{
-	if (spawnedProjectile == nullptr)
-		spawnedProjectile = new Projectile(posX, posY, moveDirection);
-}
-
-Projectile* PlayerTank::getSpawnedProjectile()
-{
-	return spawnedProjectile;
-}
-
-void PlayerTank::destroyProjectile()
-{
-	delete spawnedProjectile;
-	spawnedProjectile = nullptr;
-}
+//void PlayerTank::move(float time)
+//{
+//	//ParentClass::move(time);
+//
+//	//if (posX <= 0 || posX >= 800 || posY <= 0 || posY >= 600)
+//	//	this->currentSpeed = 0;
+//}

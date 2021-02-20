@@ -33,25 +33,15 @@
 
 
 #pragma once
-#include "ParentClass.h"
+#include "Tanks.h"
 
-class Projectile;
-
-class PlayerTank : public ParentClass
+class PlayerTank : public Tanks
 {
-	float staticSpeed = 0.07;
 	const char* tankFilePath = "D:\\doc\\Tanks_Sol\\Tanks_Proj\\data\\Tank.png";
-	Projectile* spawnedProjectile;
 
 public:
 
 	PlayerTank();
 	PlayerTank(float posX, float posY);
-
 	void setSprite();
-	virtual void move(float time);
-	float getTankStaticSpeed();
-	void spawnProjectile();
-	void destroyProjectile();
-	Projectile* getSpawnedProjectile();
 };

@@ -1,4 +1,5 @@
 #include "Projectile.h"
+#include "GameRules.h"
 #include <iostream>
 
 Projectile::Projectile(float posX, float posY, FRKey moveDirection)

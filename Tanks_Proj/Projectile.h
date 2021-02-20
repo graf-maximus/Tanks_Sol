@@ -1,7 +1,7 @@
 #pragma once
-#include "ParentClass.h"
+#include "GameRules.h"
 
-class Projectile : public ParentClass
+class Projectile : public GameRules
 {
 	float projectileSpeed = 0.4;
 	int spriteSizeW, spriteSizeH;

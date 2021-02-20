@@ -1,29 +1,29 @@
-#include "ParentClass.h"
+#include "GameRules.h"
 
-void ParentClass::setPosition(float x, float y)
+void GameRules::setPosition(float x, float y)
 {
 	this->posX = x;
 	this->posY = y;
 }
 
-void ParentClass::getPosition(float& x, float& y)
+void GameRules::getPosition(float& x, float& y)
 {
 	x = this->posX;
 	y = this->posY;
 }
 
-Sprite* ParentClass::getSprite()
+Sprite* GameRules::getSprite()
 {
 	return this->sprite;
 }
 
-void ParentClass::draw()
+void GameRules::draw()
 {
 	if (this->sprite != nullptr)
 		drawSprite(this->sprite, this->posX, this->posY);
 }
 
-void ParentClass::move(float time)
+void GameRules::move(float time)
 {
 	switch (moveDirection)
 	{
@@ -44,22 +44,22 @@ void ParentClass::move(float time)
 	}
 }
 
-void ParentClass::setSpeed(float speed)
+void GameRules::setSpeed(float speed)
 {
 	this->currentSpeed = speed;
 }
 
-float ParentClass::getSpeed()
+float GameRules::getSpeed()
 {
 	return this->currentSpeed;
 }
 
-void ParentClass::setMoveDirection(FRKey direction)
+void GameRules::setMoveDirection(FRKey direction)
 {
 	this->moveDirection = direction;
 }
 
-FRKey ParentClass::getMoveDirection()
+FRKey GameRules::getMoveDirection()
 {
 	return this->moveDirection;
 }

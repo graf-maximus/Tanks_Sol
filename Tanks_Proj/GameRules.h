@@ -1,7 +1,7 @@
 #pragma once
 #include "Framework.h"
 
-class ParentClass
+class GameRules
 {
 protected:
 	float posX, posY;
