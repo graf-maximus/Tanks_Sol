@@ -125,16 +125,27 @@ PlayerTank::PlayerTank()
 {
 }
 
+PlayerTank::~PlayerTank()
+{
+	delete projectileController;
+}
+
 PlayerTank::PlayerTank(float posX, float posY)
 {
 	this->posX = posX;
 	this->posY = posY;
 	this->moveDirection = FRKey::UP;
+	this->projectileController = new ProjectileController(this);
 }
 
 void PlayerTank::setSprite()
 {
 	this->sprite = createSprite(this->tankFilePath);
+}
+
+ProjectileController* PlayerTank::getProjectileController()
+{
+	return this->projectileController;
 }
 
 //void PlayerTank::move(float time)

@@ -12,6 +12,12 @@ EnemyTank::EnemyTank(float posX, float posY)
 	this->posY = posY;
 	this->moveDirection = FRKey::DOWN;
 	this->currentSpeed = 0.07;
+	this->projectileController = new ProjectileController(this);
+}
+
+EnemyTank::~EnemyTank()
+{
+	delete projectileController;
 }
 
 void EnemyTank::setSprite()
@@ -26,6 +32,18 @@ void EnemyTank::changeDirection()
 	newDirection = static_cast<FRKey>(++newDir % 4);
 	this->setMoveDirection(newDirection);
 	this->intersectionWall = false;
+}
+
+ProjectileController* EnemyTank::getProjectileController()
+{
+	return this->projectileController;
+}
+
+void EnemyTank::spawnProjectile(float time)
+{
+	//std::cout << "Spawn from EnemyTank" << '\n';
+	if (this->getProjectileController()->getSpawnedProjectile() == nullptr)
+		this->getProjectileController()->spawnProjectile(this->posX, this->posY, this->moveDirection);
 }
 
 void EnemyTank::move(float time)

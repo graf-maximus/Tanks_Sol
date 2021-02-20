@@ -22,9 +22,6 @@
     <Filter Include="Source Files\Projectiles">
       <UniqueIdentifier>{f4c0a7e0-5ba3-42e2-b7cf-7f1f3357d9d0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Spawners">
-      <UniqueIdentifier>{6b3c2b62-aaf0-4713-baa6-3a88b4c73a2c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Bonus">
       <UniqueIdentifier>{45bc58d5-9b0e-4c85-8a7c-3c0b804c2247}</UniqueIdentifier>
     </Filter>
@@ -33,9 +30,6 @@
     </Filter>
     <Filter Include="Header Files\Bonus">
       <UniqueIdentifier>{ce464119-b216-45bd-a686-c37f64da16ff}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Spawners">
-      <UniqueIdentifier>{34acfdc1-e298-45b8-ac84-ccc3e917ec4b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Projectiles">
       <UniqueIdentifier>{92dd3ff7-4299-4c8f-a34f-2f7ff0ee119d}</UniqueIdentifier>
@@ -48,6 +42,12 @@
     </Filter>
     <Filter Include="Source Files\Map">
       <UniqueIdentifier>{4ff8b3d0-752a-407d-b7a8-875c283095f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Controllers">
+      <UniqueIdentifier>{6b3c2b62-aaf0-4713-baa6-3a88b4c73a2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Controllers">
+      <UniqueIdentifier>{34acfdc1-e298-45b8-ac84-ccc3e917ec4b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -66,14 +66,17 @@
     <ClCompile Include="GameRules.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
-    <ClCompile Include="EnemySpawner.cpp">
-      <Filter>Source Files\Spawners</Filter>
-    </ClCompile>
     <ClCompile Include="Map.cpp">
       <Filter>Source Files\Map</Filter>
     </ClCompile>
     <ClCompile Include="Tanks.cpp">
       <Filter>Source Files\Tanks</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyController.cpp">
+      <Filter>Source Files\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="ProjectileController.cpp">
+      <Filter>Source Files\Controllers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -95,11 +98,14 @@
     <ClInclude Include="Framework.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
-    <ClInclude Include="EnemySpawner.h">
-      <Filter>Header Files\Spawners</Filter>
-    </ClInclude>
     <ClInclude Include="Tanks.h">
       <Filter>Header Files\Tanks</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyController.h">
+      <Filter>Header Files\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectileController.h">
+      <Filter>Header Files\Controllers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

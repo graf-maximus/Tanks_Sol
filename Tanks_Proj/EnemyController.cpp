@@ -1,17 +1,17 @@
-#include "EnemySpawner.h"
+#include "EnemyController.h"
 
-EnemySpawner::EnemySpawner()
+EnemyController::EnemyController()
 {
 }
 
-void EnemySpawner::spawnNewEnemy()
+void EnemyController::spawnNewEnemy()
 {
 	EnemyTank* newEnemy = new EnemyTank(100, 100);
 	newEnemy->setSprite();
 	this->enemyTanks.push_back(newEnemy);
 }
 
-std::vector<EnemyTank*> EnemySpawner::getEnemyTanks()
+std::vector<EnemyTank*> EnemyController::getEnemyTanks()
 {
 	return std::vector<EnemyTank*>(this->enemyTanks);
 }

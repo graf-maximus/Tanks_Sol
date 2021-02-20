@@ -3,7 +3,7 @@
 #include "Framework.h"
 #include "PlayerTank.h"
 #include "EnemyTank.h"
-#include "EnemySpawner.h"
+#include "EnemyController.h"
 #include "Projectile.h"
 #include <iostream>
 
@@ -11,7 +11,7 @@
 class MyFramework : public Framework {
 
 	PlayerTank* player = new PlayerTank{400, 300};
-	EnemySpawner* enemySpawner = new EnemySpawner();
+	EnemyController* enemySpawner = new EnemyController();
 	float time = 0;
 
 public:
@@ -43,19 +43,38 @@ public:
 
 		player->draw();
 
-		if (player->getSpawnedProjectile() != nullptr)
+		if (player->getProjectileController()->getSpawnedProjectile() != nullptr)
 		{
-			player->getSpawnedProjectile()->move(time);
-			player->getSpawnedProjectile()->draw();
-			if (player->getSpawnedProjectile()->isProjectileOverWall())
-				player->destroyProjectile();
+			player->getProjectileController()->getSpawnedProjectile()->move(time);
+			player->getProjectileController()->getSpawnedProjectile()->draw();
 		}
 
 		for (int i = 0; i < enemySpawner->getEnemyTanks().size(); i++)
 		{
 			enemySpawner->getEnemyTanks().at(i)->move(time);
 			enemySpawner->getEnemyTanks().at(i)->draw();
+			enemySpawner->getEnemyTanks().at(i)->spawnProjectile(time);
+			if (enemySpawner->getEnemyTanks().at(i)->getProjectileController()->getSpawnedProjectile() != nullptr)
+			{
+				enemySpawner->getEnemyTanks().at(i)->getProjectileController()->getSpawnedProjectile()->move(time);
+				enemySpawner->getEnemyTanks().at(i)->getProjectileController()->getSpawnedProjectile()->draw();
+			}
 		}
+
+		player->getProjectileController()->checkIntersections();
+
+		for (int i = 0; i < enemySpawner->getEnemyTanks().size(); i++)
+		{
+			enemySpawner->getEnemyTanks().at(i)->getProjectileController()->checkIntersections();
+		}
+
+		//if (player->getSpawnedProjectile() != nullptr)
+		//{
+		//	player->getSpawnedProjectile()->move(time);
+		//	player->getSpawnedProjectile()->draw();
+		//	if (player->getSpawnedProjectile()->isProjectileOverWall())
+		//		player->destroyProjectile();
+		//}
 
 		time = getTickCount();
 
@@ -73,7 +92,10 @@ public:
 			switch (button)
 			{
 			case FRMouseButton::LEFT:
-				player->spawnProjectile();
+				float posX, posY;
+				player->getPosition(posX, posY);
+				player->getProjectileController()->spawnProjectile(posX, posY, player->getMoveDirection());
+				//player->spawnProjectile();
 				break;
 			default:
 				break;

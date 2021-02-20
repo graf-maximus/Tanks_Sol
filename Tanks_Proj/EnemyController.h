@@ -2,13 +2,13 @@
 #include <vector>
 #include "EnemyTank.h"
 
-class EnemySpawner
+class EnemyController
 {
 	std::vector<EnemyTank*> enemyTanks;
 
 public:
 
-	EnemySpawner();
+	EnemyController();
 	void spawnNewEnemy();
 	std::vector<EnemyTank*> getEnemyTanks();
 };

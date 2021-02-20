@@ -17,7 +17,4 @@ public:
 	virtual void setSprite();
 	virtual void move(float time);
 	virtual float getTankStaticSpeed();
-	virtual void spawnProjectile();
-	virtual void destroyProjectile();
-	virtual Projectile* getSpawnedProjectile();
 };

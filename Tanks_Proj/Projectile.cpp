@@ -9,6 +9,8 @@ Projectile::Projectile(float posX, float posY, FRKey moveDirection)
 	this->posY = posY;
 	this->setSpeed(0.4);
 
+	std::cout << this->posX << '\t' << this->posY << '\n';
+
 	/*int tankSpriteSizeWidth, tankSpriteSizeHeight;
 	getSpriteSize(ownerTank->getSprite(), tankSpriteSizeWidth, tankSpriteSizeHeight);
 
@@ -35,8 +37,6 @@ Projectile::Projectile(float posX, float posY, FRKey moveDirection)
 	default:
 		break;
 	}*/
-
-	this->setSprite();
 }
 
 Projectile::~Projectile()
@@ -50,17 +50,17 @@ void Projectile::setSprite()
 	getSpriteSize(this->sprite, this->spriteSizeW, this->spriteSizeH);
 }
 
-bool Projectile::isProjectileOverWall()
-{
-	if (this->posX + spriteSizeW <= 0 || this->posX >= 800)
-		return true;
-	else if (this->posY + spriteSizeH <= 0 || this->posY >= 600)
-		return true;
-
-	return false;
-}
-
-bool Projectile::projectileIntersection()
-{
-	return false;
-}
+//bool Projectile::isProjectileOverWall()
+//{
+//	if (this->posX + spriteSizeW <= 0 || this->posX >= 800)
+//		return true;
+//	else if (this->posY + spriteSizeH <= 0 || this->posY >= 600)
+//		return true;
+//
+//	return false;
+//}
+//
+//bool Projectile::projectileIntersection()
+//{
+//	return false;
+//}

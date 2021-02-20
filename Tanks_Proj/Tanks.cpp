@@ -44,19 +44,19 @@ float Tanks::getTankStaticSpeed()
 	return this->staticSpeed;
 }
 
-void Tanks::spawnProjectile()
-{
-	if (this->spawnedProjectile == nullptr)
-		this->spawnedProjectile = new Projectile(this->posX, this->posY, this->moveDirection);
-}
-
-void Tanks::destroyProjectile()
-{
-	delete this->spawnedProjectile;
-	this->spawnedProjectile = nullptr;
-}
-
-Projectile* Tanks::getSpawnedProjectile()
-{
-	return this->spawnedProjectile;
-}
+//void Tanks::spawnProjectile()
+//{
+//	if (this->spawnedProjectile == nullptr)
+//		this->spawnedProjectile = new Projectile(this->posX, this->posY, this->moveDirection);
+//}
+//
+//void Tanks::destroyProjectile()
+//{
+//	delete this->spawnedProjectile;
+//	this->spawnedProjectile = nullptr;
+//}
+//
+//Projectile* Tanks::getSpawnedProjectile()
+//{
+//	return this->spawnedProjectile;
+//}
