@@ -15,7 +15,7 @@ public:
 	~EnemyTank();
 	void setSprite();
 	void move(float time);
-	void changeDirection();
+	void setMoveDirection(FRKey direction);
 	ProjectileController* getProjectileController();
 	void spawnProjectile(float time);   // needs to rename
 };

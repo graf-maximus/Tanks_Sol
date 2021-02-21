@@ -8,6 +8,8 @@ class ProjectileController
 {
 	Projectile* spawnedProjectile;
 	Tanks* owner;
+	unsigned int spawnTimer = getTickCount();
+	int spawnTime = 5000;  // 5 second
 
 public:
 
@@ -18,5 +20,6 @@ public:
 	void checkIntersections();
 	void destroyProjectile();
 	Projectile* getSpawnedProjectile();
+	bool needToSpawn();
 };
 

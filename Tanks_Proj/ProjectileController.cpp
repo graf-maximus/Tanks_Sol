@@ -52,3 +52,13 @@ Projectile* ProjectileController::getSpawnedProjectile()
 {
 	return this->spawnedProjectile;
 }
+
+bool ProjectileController::needToSpawn()
+{
+	if (getTickCount() - spawnTimer >= spawnTime)
+	{
+		spawnTimer = getTickCount();
+		return true;
+	}
+	return false;
+}

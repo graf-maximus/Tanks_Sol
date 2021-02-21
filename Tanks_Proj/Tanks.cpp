@@ -14,6 +14,32 @@ void Tanks::setSprite()
 	this->sprite = createSprite(this->tankFilePath);
 }
 
+void Tanks::setMoveDirection(FRKey direction)
+{
+	this->moveDirection = direction;
+	if (sprite != nullptr)
+		destroySprite(sprite);
+	switch (direction)
+	{
+	case FRKey::RIGHT:
+		sprite = createSprite("D:\\doc\\Tanks_Sol\\Tanks_Proj\\data\\TankRight.png");
+		break;
+	case FRKey::LEFT:
+		sprite = createSprite("D:\\doc\\Tanks_Sol\\Tanks_Proj\\data\\TankLeft.png");
+		break;
+	case FRKey::DOWN:
+		sprite = createSprite("D:\\doc\\Tanks_Sol\\Tanks_Proj\\data\\TankDown.png");
+		break;
+	case FRKey::UP:
+		sprite = createSprite("D:\\doc\\Tanks_Sol\\Tanks_Proj\\data\\Tank.png");
+		break;
+	case FRKey::COUNT:
+		break;
+	default:
+		break;
+	}
+}
+
 void Tanks::move(float time)
 {
 	switch (this->moveDirection)

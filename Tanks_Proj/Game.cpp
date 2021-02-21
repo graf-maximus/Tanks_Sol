@@ -25,7 +25,8 @@ public:
 
 	virtual bool Init() {
 
-		player->setSprite();
+		//player->setSprite();
+		player->setMoveDirection(FRKey::DOWN);
 		enemySpawner->spawnNewEnemy();
 
 		return true;
@@ -58,7 +59,12 @@ public:
 		{
 			enemySpawner->getEnemyTanks().at(i)->move(time);
 			enemySpawner->getEnemyTanks().at(i)->draw();
-			enemySpawner->getEnemyTanks().at(i)->spawnProjectile(time);
+			//enemySpawner->getEnemyTanks().at(i)->spawnProjectile(time);
+			if (enemySpawner->getEnemyTanks().at(i)->getProjectileController()->needToSpawn())
+			{
+				enemySpawner->getEnemyTanks().at(i)->spawnProjectile(time);
+			}
+
 			if (enemySpawner->getEnemyTanks().at(i)->getProjectileController()->getSpawnedProjectile() != nullptr)
 			{
 				enemySpawner->getEnemyTanks().at(i)->getProjectileController()->getSpawnedProjectile()->move(time);

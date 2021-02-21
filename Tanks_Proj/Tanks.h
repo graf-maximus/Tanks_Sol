@@ -16,5 +16,6 @@ public:
 
 	virtual void setSprite();
 	virtual void move(float time);
+	virtual void setMoveDirection(FRKey direction);
 	virtual float getTankStaticSpeed();
 };

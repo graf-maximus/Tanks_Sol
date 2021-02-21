@@ -134,7 +134,7 @@ PlayerTank::PlayerTank(float posX, float posY)
 {
 	this->posX = posX;
 	this->posY = posY;
-	this->moveDirection = FRKey::UP;
+	//this->setMoveDirection(FRKey::UP);
 	this->projectileController = new ProjectileController(this);
 }
 

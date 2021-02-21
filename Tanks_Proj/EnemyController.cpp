@@ -7,7 +7,7 @@ EnemyController::EnemyController()
 void EnemyController::spawnNewEnemy()
 {
 	EnemyTank* newEnemy = new EnemyTank(100, 100);
-	newEnemy->setSprite();
+	newEnemy->setMoveDirection(FRKey::DOWN);
 	this->enemyTanks.push_back(newEnemy);
 }
 

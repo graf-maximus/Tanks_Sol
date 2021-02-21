@@ -7,7 +7,7 @@ void Map::createMap()
 		for (int j = 0; j < 800; j++)
 		{
 
-			Map[i][j] = ' ';
+		//	Map[i][j] = ' ';
 		}
 	}
 }
