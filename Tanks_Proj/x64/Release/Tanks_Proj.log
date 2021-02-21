@@ -1,10 +1,10 @@
-﻿  EnemyController.cpp
+﻿  Game.cpp
 D:\doc\Tanks_Sol\Tanks_Proj\Tanks.h(8,20): warning C4305: 'initializing': truncation from 'double' to 'float'
 D:\doc\Tanks_Sol\Tanks_Proj\Projectile.h(6,24): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\doc\Tanks_Sol\Tanks_Proj\EnemyController.cpp(22,24): warning C4018: '>=': signed/unsigned mismatch
+D:\doc\Tanks_Sol\Tanks_Proj\Game.cpp(145,22): warning C4244: '=': conversion from 'unsigned int' to 'float', possible loss of data
   Generating code
-  3 of 132 functions ( 2.3%) were compiled, the rest were copied from previous compilation.
+  4 of 344 functions ( 1.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    4 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Tanks_Proj.vcxproj -> D:\doc\Tanks_Sol\x64\Release\Tanks_Proj.exe

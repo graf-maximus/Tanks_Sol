@@ -5,6 +5,7 @@ class GameRules
 {
 protected:
 	float posX, posY;
+	int posXFile, posYFile;
 	float currentSpeed;
 	Sprite* sprite;
 	FRKey moveDirection;

@@ -1,12 +1,13 @@
 #pragma once
+
+class GameInstance;
+
 class Map
 {
-
-
 public:
 
 	Map();
-	void createMap();
+	bool createMap(GameInstance* game);
 	void moveProjectile();
 	void moveTank();
 };

@@ -1,5 +1,6 @@
 #include "Tanks.h"
 #include "Projectile.h"
+#include <iostream>
 
 Tanks::Tanks()
 {
@@ -31,7 +32,7 @@ void Tanks::setMoveDirection(FRKey direction)
 		sprite = createSprite("D:\\doc\\Tanks_Sol\\Tanks_Proj\\data\\TankDown.png");
 		break;
 	case FRKey::UP:
-		sprite = createSprite("D:\\doc\\Tanks_Sol\\Tanks_Proj\\data\\Tank.png");
+		this->sprite = createSprite("D:\\doc\\Tanks_Sol\\Tanks_Proj\\data\\TankUp.png");
 		break;
 	case FRKey::COUNT:
 		break;
