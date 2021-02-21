@@ -35,9 +35,9 @@ void ProjectileController::checkIntersections()
 		float posX, posY;
 		spawnedProjectile->getPosition(posX, posY);
 
-		if (posX <= 0 || posX >= 800)
+		if (posX <= 0 || posX >= 544)
 			this->destroyProjectile();
-		else if (posY <= 0 || posY >= 600)
+		else if (posY <= 0 || posY >= 480)
 			this->destroyProjectile();
 	}
 }

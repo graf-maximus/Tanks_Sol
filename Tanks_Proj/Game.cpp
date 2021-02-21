@@ -51,6 +51,21 @@ public:
 	virtual bool Tick() {
 		
 		time = getTickCount() - time;
+
+
+
+
+
+
+		if (game->checkPlayerTankWallIntersections(time))
+		{
+			game->player->setSpeed(0.f);
+		}
+
+
+
+
+		 
 		game->player->move(time);
 		game->player->draw();
 
@@ -73,7 +88,7 @@ public:
 		{
 			game->enemyController->getEnemyTanks().at(i)->move(time);
 			game->enemyController->getEnemyTanks().at(i)->draw();
-			game->enemyController->getEnemyTanks().at(i)->spawnProjectile(time);
+			//game->enemyController->getEnemyTanks().at(i)->spawnProjectile(time);
 			if (game->enemyController->getEnemyTanks().at(i)->getProjectileController()->needToSpawn())
 			{
 				game->enemyController->getEnemyTanks().at(i)->spawnProjectile(time);
@@ -91,7 +106,6 @@ public:
 		{
 			game->enemyController->getEnemyTanks().at(i)->getProjectileController()->checkIntersections();
 		}
-
 
 
 		

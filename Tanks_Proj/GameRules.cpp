@@ -2,8 +2,6 @@
 
 void GameRules::setPosition(float x, float y)
 {
-	this->posXFile = x;
-	this->posYFile = y;
 	this->posX = x * 32;
 	this->posY = y * 32;
 }

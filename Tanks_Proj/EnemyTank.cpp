@@ -45,7 +45,7 @@ void EnemyTank::move(float time)
 	switch (this->moveDirection)
 	{
 	case FRKey::RIGHT:
-		if (this->posX + this->currentSpeed * time <= 800)
+		if (this->posX + this->currentSpeed * time <= 544)
 			this->posX += this->currentSpeed * time;
 		else
 			this->intersectionWall = true;
@@ -57,7 +57,7 @@ void EnemyTank::move(float time)
 			this->intersectionWall = true;
 		break;
 	case FRKey::DOWN:
-		if (this->posY + this->currentSpeed * time <= 600)
+		if (this->posY + this->currentSpeed * time <= 480)
 			this->posY += this->currentSpeed * time;
 		else
 			this->intersectionWall = true;

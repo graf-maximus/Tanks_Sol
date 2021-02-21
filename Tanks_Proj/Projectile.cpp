@@ -45,7 +45,6 @@ Projectile::~Projectile()
 void Projectile::setSprite()
 {
 	this->sprite = createSprite(projectileFilePath);
-	getSpriteSize(this->sprite, this->spriteSizeW, this->spriteSizeH);
 }
 
 //bool Projectile::isProjectileOverWall()

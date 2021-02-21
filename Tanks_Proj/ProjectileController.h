@@ -9,7 +9,7 @@ class ProjectileController
 	Projectile* spawnedProjectile;
 	Tanks* owner;
 	unsigned int spawnTimer = getTickCount();
-	int spawnTime = 2000;  // 5 second
+	int spawnTime = 2000;  // 2 second
 
 public:
 

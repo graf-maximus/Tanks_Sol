@@ -5,6 +5,7 @@
 #include "ProjectileController.h"
 #include "BreakableWall.h"
 #include "UnbreakableWall.h"
+#include "GameRules.h"
 #include <vector>
 
 class GameInstance
@@ -23,5 +24,8 @@ public:
 	void spawnWall(int number, int posX, int posY);
 	void spawnPhoenix(int posX, int posY);
 	void changeLevel();
+
+
+	bool checkPlayerTankWallIntersections(float time);
 };
 

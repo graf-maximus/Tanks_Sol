@@ -5,6 +5,7 @@ class Projectile;
 
 class Tanks : public GameRules
 {
+protected:
 	float staticSpeed = 0.07;
 	const char* tankFilePath;
 	Projectile* spawnedProjectile;

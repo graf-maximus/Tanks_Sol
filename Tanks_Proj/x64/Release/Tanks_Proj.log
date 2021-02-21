@@ -1,10 +1,11 @@
-﻿  Game.cpp
-D:\doc\Tanks_Sol\Tanks_Proj\Tanks.h(8,20): warning C4305: 'initializing': truncation from 'double' to 'float'
+﻿  GameInstance.cpp
+D:\doc\Tanks_Sol\Tanks_Proj\Tanks.h(9,20): warning C4305: 'initializing': truncation from 'double' to 'float'
 D:\doc\Tanks_Sol\Tanks_Proj\Projectile.h(6,24): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\doc\Tanks_Sol\Tanks_Proj\Game.cpp(145,22): warning C4244: '=': conversion from 'unsigned int' to 'float', possible loss of data
+D:\doc\Tanks_Sol\Tanks_Proj\GameInstance.cpp(11,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\doc\Tanks_Sol\Tanks_Proj\GameInstance.cpp(11,26): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Generating code
-  4 of 344 functions ( 1.2%) were compiled, the rest were copied from previous compilation.
+  2 of 345 functions ( 0.6%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    4 functions had inline decision re-evaluated but remain unchanged
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Tanks_Proj.vcxproj -> D:\doc\Tanks_Sol\x64\Release\Tanks_Proj.exe
