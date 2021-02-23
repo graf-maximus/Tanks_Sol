@@ -1,5 +1,9 @@
 #pragma once
 #include "Framework.h"
+#include <vector>
+
+class Wall;
+class Tanks;
 
 class GameRules
 {
@@ -8,13 +12,12 @@ protected:
 	float currentSpeed;
 	Sprite* sprite;
 	FRKey moveDirection;
-	const char* spriteFilePath;
 
 public:
 
 	virtual void setPosition(float x, float y);
 	virtual void getPosition(float& x, float& y);
-	virtual void setSprite() = 0;
+	virtual void setSprite(const char* filePath);
 	virtual Sprite* getSprite();
 	virtual void draw();
 	virtual void move(float time);
@@ -22,4 +25,5 @@ public:
 	virtual float getSpeed();
 	virtual void setMoveDirection(FRKey direction);
 	virtual FRKey getMoveDirection();
+	virtual bool checkIntersection(float time, std::vector<Wall*> walls, std::vector<Tanks*> tanks, Tanks* player);
 };

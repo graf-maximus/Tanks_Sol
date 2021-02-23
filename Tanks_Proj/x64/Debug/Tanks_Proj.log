@@ -1,0 +1,25 @@
+﻿  EnemyController.cpp
+D:\doc\Tanks_Sol\Tanks_Proj\Tanks.h(9,20): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\doc\Tanks_Sol\Tanks_Proj\Projectile.h(10,24): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\doc\Tanks_Sol\Tanks_Proj\EnemyController.cpp(19,95): warning C4244: 'argument': conversion from '_Ty2' to 'float', possible loss of data
+          with
+          [
+              _Ty2=int
+          ]
+D:\doc\Tanks_Sol\Tanks_Proj\EnemyController.cpp(19,63): warning C4244: 'argument': conversion from '_Ty1' to 'float', possible loss of data
+          with
+          [
+              _Ty1=int
+          ]
+D:\doc\Tanks_Sol\Tanks_Proj\EnemyController.cpp(37,103): warning C4244: 'argument': conversion from '_Ty2' to 'float', possible loss of data
+          with
+          [
+              _Ty2=int
+          ]
+D:\doc\Tanks_Sol\Tanks_Proj\EnemyController.cpp(37,67): warning C4244: 'argument': conversion from '_Ty1' to 'float', possible loss of data
+          with
+          [
+              _Ty1=int
+          ]
+D:\doc\Tanks_Sol\Tanks_Proj\EnemyController.cpp(72,34): warning C4018: '>=': signed/unsigned mismatch
+  Tanks_Proj.vcxproj -> D:\doc\Tanks_Sol\x64\Debug\Tanks_Proj.exe

@@ -1,4 +1,6 @@
 #include "GameRules.h"
+#include "GameInstance.h"
+#include <iostream>
 
 void GameRules::setPosition(float x, float y)
 {
@@ -12,9 +14,20 @@ void GameRules::getPosition(float& x, float& y)
 	y = this->posY;
 }
 
+void GameRules::setSprite(const char* filePath)
+{
+	if (this->sprite != nullptr)
+	{
+		destroySprite(this->sprite);
+		this->sprite = nullptr;
+	}
+	this->sprite = createSprite(filePath);
+}
+
 Sprite* GameRules::getSprite()
 {
-	return this->sprite;
+	if (this->sprite != nullptr)
+		return this->sprite;
 }
 
 void GameRules::draw()
@@ -62,4 +75,47 @@ void GameRules::setMoveDirection(FRKey direction)
 FRKey GameRules::getMoveDirection()
 {
 	return this->moveDirection;
+}
+
+bool GameRules::checkIntersection(float time, std::vector<Wall*> walls, std::vector<Tanks*> tanks, Tanks* player)
+{
+	float objPosX, objPosY, wallPosX, wallPosY;
+	int objWidth, objHeight, wallWidth, wallHeight;
+	this->getPosition(objPosX, objPosY);
+
+	getSpriteSize(this->getSprite(), objWidth, objHeight);
+
+	switch (this->getMoveDirection())
+	{
+	case FRKey::RIGHT:
+		objPosX += this->getSpeed() * time;
+		break;
+	case FRKey::LEFT:
+		objPosX -= this->getSpeed() * time;
+		break;
+	case FRKey::DOWN:
+		objPosY += this->getSpeed() * time;
+		break;
+	case FRKey::UP:
+		objPosY -= this->getSpeed() * time;
+		break;
+	default:
+		break;
+	}
+
+	for (int i = 0; i < walls.size(); i++)
+	{
+		getSpriteSize(walls.at(i)->getSprite(), wallWidth, wallHeight);
+		walls.at(i)->getPosition(wallPosX, wallPosY);
+
+		if (objPosX + objWidth >= wallPosX + 1 &&
+			objPosY + objHeight >= wallPosY + 1 &&
+			wallPosX + wallWidth >= objPosX + 1 &&
+			wallPosY + wallHeight >= objPosY + 1)
+		{
+			return true;
+		}
+	}
+
+	return false;
 }

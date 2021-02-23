@@ -4,14 +4,12 @@
 class Wall : public GameRules
 {
 protected:
-	bool breakableWall;
-	//Sprite* sprite;
-	//const char* wallFilePath;
-	//int posX, posY;
+
+	const char* wallFilePath = ".\\data\\CeglaWall.png";
 
 public:
+
 	Wall();
 	Wall(int posX, int posY);
-	void setSprite();
+	const char* getSpriteFilePath();
 };
-

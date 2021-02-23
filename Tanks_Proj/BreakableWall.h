@@ -3,9 +3,9 @@
 
 class BreakableWall : public Wall
 {
-	const char* wallFilePath = "D:\\doc\\Tanks_Sol\\Tanks_Proj\\data\\DestructibleWall.png";
+	const char* wallFilePath = ".\\data\\CeglaWall.png";
 
 public:
+	BreakableWall();
 	BreakableWall(int posX, int posY);
-	void setSprite();
 };

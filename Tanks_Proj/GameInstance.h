@@ -14,9 +14,8 @@ public:
 
 	PlayerTank* player;
 	EnemyController* enemyController;
+	std::vector<Tanks*> tanks;
 	std::vector<Wall*> walls;
-
-
 
 	GameInstance();
 	void spawnPlayer(int posX, int posY);
@@ -24,8 +23,4 @@ public:
 	void spawnWall(int number, int posX, int posY);
 	void spawnPhoenix(int posX, int posY);
 	void changeLevel();
-
-
-	bool checkPlayerTankWallIntersections(float time);
 };
-

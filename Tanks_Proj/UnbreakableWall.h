@@ -3,9 +3,9 @@
 
 class UnbreakableWall : public Wall
 {
-	const char* wallFilePath = "D:\\doc\\Tanks_Sol\\Tanks_Proj\\data\\Wall.png";
+	const char* wallFilePath = ".\\data\\SteelWall.png";
 
 public:
+	UnbreakableWall();
 	UnbreakableWall(int posX, int posY);
-	void setSprite();
 };

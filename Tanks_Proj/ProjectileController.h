@@ -1,8 +1,7 @@
 #pragma once
 #include <vector>
 #include "Projectile.h"
-
-class Tanks;
+#include "Tanks.h"
 
 class ProjectileController
 {
@@ -17,9 +16,7 @@ public:
 	ProjectileController(Tanks* owner);
 	~ProjectileController();
 	void spawnProjectile(float posX, float posY, FRKey direction);
-	void checkIntersections();
 	void destroyProjectile();
 	Projectile* getSpawnedProjectile();
 	bool needToSpawn();
 };
-

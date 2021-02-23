@@ -1,4 +1,5 @@
 #include "EnemyTank.h"
+#include "ProjectileController.h"
 #include <iostream>
 
 EnemyTank::EnemyTank()
@@ -8,7 +9,27 @@ EnemyTank::EnemyTank()
 
 EnemyTank::EnemyTank(float posX, float posY)
 {
+	this->tankRIGHTFilePath = ".\\data\\EnemyTank\\EnemyTankRIGHT.png";
+	this->tankLEFTFilePath = ".\\data\\EnemyTank\\EnemyTankLEFT.png";
+	this->tankDOWNFilePath = ".\\data\\EnemyTank\\EnemyTankDOWN.png";
+	this->tankUPFilePath = ".\\data\\EnemyTank\\EnemyTankUP.png";
+
 	this->setPosition(posX, posY);
+	switch (this->getMoveDirection())
+	{
+	case FRKey::RIGHT :
+		this->setSprite(tankRIGHTFilePath);
+		break;
+	case FRKey::LEFT:
+		this->setSprite(tankLEFTFilePath);
+		break;
+	case FRKey::DOWN:
+		this->setSprite(tankDOWNFilePath);
+		break;
+	case FRKey::UP:
+		this->setSprite(tankUPFilePath);
+		break;
+	}
 	this->currentSpeed = 0.07;
 	this->projectileController = new ProjectileController(this);
 }
@@ -18,20 +39,10 @@ EnemyTank::~EnemyTank()
 	delete projectileController;
 }
 
-void EnemyTank::setSprite()
-{
-	this->sprite = createSprite(this->tankFilePath);
-}
-
 void EnemyTank::setMoveDirection(FRKey direction)
 {
 	Tanks::setMoveDirection(direction);
 	this->intersectionWall = false;
-}
-
-ProjectileController* EnemyTank::getProjectileController()
-{
-	return this->projectileController;
 }
 
 void EnemyTank::spawnProjectile(float time)

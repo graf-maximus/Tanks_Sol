@@ -1,23 +1,15 @@
-
-
-#include "Framework.h"
-//#include "PlayerTank.h"
-//#include "EnemyTank.h"
-//#include "EnemyController.h"
-//#include "Projectile.h"
+﻿#include "Framework.h"
 #include "GameInstance.h"
 #include "Map.h"
-//#include "PlayerTank.h"
 #include <iostream>
 
 /* Test Framework realization */
 class MyFramework : public Framework {
 
-	/*PlayerTank* player = new PlayerTank{400, 300};
-	EnemyController* enemySpawner = new EnemyController();*/
 	GameInstance* game;
 	Map* map;
-	float time = 0;
+	float clock = 0;
+	float time;
 
 public:
 
@@ -30,16 +22,12 @@ public:
 
 	virtual bool Init() {
 
-		//player->setSprite();
-		//player->setMoveDirection(FRKey::DOWN);
-		//enemySpawner->spawnNewEnemy();
-
 		game = new GameInstance();
 		map = new Map();
 		if (!map->createMap(game))
 			return false;
 
-		game->enemyController->spawnNewEnemy();
+		game->tanks.push_back(game->enemyController->spawnNewEnemy(game->tanks));
 
 		return true;
 	}
@@ -50,111 +38,61 @@ public:
 
 	virtual bool Tick() {
 		
-		time = getTickCount() - time;
+		clock = getTickCount() - clock;
+		time = clock;
+		clock = getTickCount();
 
-
-
-
-
-
-		if (game->checkPlayerTankWallIntersections(time))
+		for (int i = 0; i < game->tanks.size(); i++)
 		{
-			game->player->setSpeed(0.f);
+			if (game->tanks.at(i)->checkIntersection(time, game->walls, game->tanks, game->player))
+			{
+				if (game->tanks.at(i) == game->player)
+					game->tanks.at(i)->setSpeed(0.f);
+				else
+					game->tanks.at(i)->setMoveDirection(static_cast<FRKey>(std::rand() % 4));
+			}
+			else
+				game->tanks.at(i)->move(time);
+
+			if (game->tanks.at(i)->getProjectileController()->getSpawnedProjectile() != nullptr)
+			{
+				if (game->tanks.at(i)->getProjectileController()->getSpawnedProjectile()->checkIntersection(time, game->walls, game->tanks, game->player))
+				{
+					game->tanks.at(i)->getProjectileController()->destroyProjectile();
+	/*				if (game->tanks.at(i) != game->player)
+					{
+						game->tanks.erase(game->tanks.begin() + i);
+						i--;
+					}*/
+				}
+				else // потім треба буде прибрати (треба буде віднімати життя у танків)
+					game->tanks.at(i)->getProjectileController()->getSpawnedProjectile()->move(time);
+			}
+			else if (game->tanks.at(i) != game->player && game->tanks.at(i)->getProjectileController()->needToSpawn())
+			{
+				float posX, posY;
+				game->tanks.at(i)->getPosition(posX, posY);
+				game->tanks.at(i)->getProjectileController()->spawnProjectile(posX, posY, game->tanks.at(i)->getMoveDirection());
+			}
 		}
 
-
-
-
-		 
-		game->player->move(time);
-		game->player->draw();
-
-		if (game->player->getProjectileController()->getSpawnedProjectile() != nullptr)
+		for (int i = 0; i < game->tanks.size(); i++)
 		{
-			game->player->getProjectileController()->getSpawnedProjectile()->move(time);
-			game->player->getProjectileController()->getSpawnedProjectile()->draw();
-			game->player->getProjectileController()->checkIntersections();
+			game->tanks.at(i)->draw();
+			if (game->tanks.at(i)->getProjectileController()->getSpawnedProjectile() != nullptr)
+				game->tanks.at(i)->getProjectileController()->getSpawnedProjectile()->draw();
 		}
 
 		for (int i = 0; i < game->walls.size(); i++)
-		{
 			game->walls.at(i)->draw();
-		}
 
 		if (game->enemyController->needToSpawn())
-			game->enemyController->spawnNewEnemy();
-
-		for (int i = 0; i < game->enemyController->getEnemyTanks().size(); i++)
 		{
-			game->enemyController->getEnemyTanks().at(i)->move(time);
-			game->enemyController->getEnemyTanks().at(i)->draw();
-			//game->enemyController->getEnemyTanks().at(i)->spawnProjectile(time);
-			if (game->enemyController->getEnemyTanks().at(i)->getProjectileController()->needToSpawn())
-			{
-				game->enemyController->getEnemyTanks().at(i)->spawnProjectile(time);
-			}
-			if (game->enemyController->getEnemyTanks().at(i)->getProjectileController()->getSpawnedProjectile() != nullptr)
-			{
-				game->enemyController->getEnemyTanks().at(i)->getProjectileController()->getSpawnedProjectile()->move(time);
-				game->enemyController->getEnemyTanks().at(i)->getProjectileController()->getSpawnedProjectile()->draw();
-			}
+			EnemyTank* tank = game->enemyController->spawnNewEnemy(game->tanks);
+			if (tank != nullptr)
+				game->tanks.push_back(tank);
 		}
-
-		game->player->getProjectileController()->checkIntersections();
-
-		for (int i = 0; i < game->enemyController->getEnemyTanks().size(); i++)
-		{
-			game->enemyController->getEnemyTanks().at(i)->getProjectileController()->checkIntersections();
-		}
-
-
 		
-		//player->move(time);
-
-		//player->draw();
-
-		//if (player->getProjectileController()->getSpawnedProjectile() != nullptr)
-		//{
-		//	player->getProjectileController()->getSpawnedProjectile()->move(time);
-		//	player->getProjectileController()->getSpawnedProjectile()->draw();
-		//}
-
-		//if (enemySpawner->needToSpawn(getTickCount()))
-		//{
-		//	enemySpawner->spawnNewEnemy();
-		//}
-
-		//for (int i = 0; i < enemySpawner->getEnemyTanks().size(); i++)
-		//{
-		//	enemySpawner->getEnemyTanks().at(i)->move(time);
-		//	enemySpawner->getEnemyTanks().at(i)->draw();
-		//	//enemySpawner->getEnemyTanks().at(i)->spawnProjectile(time);
-		//	if (enemySpawner->getEnemyTanks().at(i)->getProjectileController()->needToSpawn())
-		//	{
-		//		enemySpawner->getEnemyTanks().at(i)->spawnProjectile(time);
-		//	}
-
-		//	if (enemySpawner->getEnemyTanks().at(i)->getProjectileController()->getSpawnedProjectile() != nullptr)
-		//	{
-		//		enemySpawner->getEnemyTanks().at(i)->getProjectileController()->getSpawnedProjectile()->move(time);
-		//		enemySpawner->getEnemyTanks().at(i)->getProjectileController()->getSpawnedProjectile()->draw();
-		//	}
-		//}
-
-		//player->getProjectileController()->checkIntersections();
-
-		//for (int i = 0; i < enemySpawner->getEnemyTanks().size(); i++)
-		//{
-		//	enemySpawner->getEnemyTanks().at(i)->getProjectileController()->checkIntersections();
-		//}
-
-		//if (player->getSpawnedProjectile() != nullptr)
-		//{
-		//	player->getSpawnedProjectile()->move(time);
-		//	player->getSpawnedProjectile()->draw();
-		//	if (player->getSpawnedProjectile()->isProjectileOverWall())
-		//		player->destroyProjectile();
-		//}
 
 		time = getTickCount();
 
@@ -188,7 +126,8 @@ public:
 	}
 
 	virtual void onKeyReleased(FRKey k) {
-		game->player->setSpeed(0);
+		if (k == game->player->getMoveDirection())
+			game->player->setSpeed(0);
 	}
 
 	virtual const char* GetTitle() override
