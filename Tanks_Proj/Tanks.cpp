@@ -1,15 +1,12 @@
 #include "Tanks.h"
 #include "ProjectileController.h"
-#include <iostream>
+#include "HealthController.h"
 
-Tanks::Tanks()
-{
-}
-
-Tanks::Tanks(float posX, float posY)
+Tanks::Tanks(float posX, float posY, int health)
 {
 	this->setPosition(posX, posY);
 	this->projectileController = new ProjectileController(this);
+	this->healthController = new HealthController(health);
 }
 
 Tanks::~Tanks()
@@ -123,4 +120,9 @@ float Tanks::getTankStaticSpeed()
 ProjectileController* Tanks::getProjectileController()
 {
 	return this->projectileController;
+}
+
+HealthController* Tanks::getHealthController()
+{
+	return this->healthController;
 }

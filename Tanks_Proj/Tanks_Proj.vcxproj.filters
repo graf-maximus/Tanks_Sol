@@ -84,17 +84,20 @@
     <ClCompile Include="ProjectileController.cpp">
       <Filter>Source Files\Controllers</Filter>
     </ClCompile>
-    <ClCompile Include="BreakableWall.cpp">
-      <Filter>Source Files\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="UnbreakableWall.cpp">
-      <Filter>Source Files\Objects</Filter>
-    </ClCompile>
     <ClCompile Include="Wall.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
     <ClCompile Include="GameInstance.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BrickWall.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="SteelWall.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthController.cpp">
+      <Filter>Source Files\Controllers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -128,14 +131,17 @@
     <ClInclude Include="Wall.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="UnbreakableWall.h">
-      <Filter>Header Files\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="BreakableWall.h">
-      <Filter>Header Files\Objects</Filter>
-    </ClInclude>
     <ClInclude Include="GameInstance.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SteelWall.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="BrickWall.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="HealthController.h">
+      <Filter>Header Files\Controllers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

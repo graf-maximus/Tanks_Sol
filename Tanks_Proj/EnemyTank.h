@@ -7,7 +7,6 @@ class EnemyTank : public Tanks
 
 public:
 
-	EnemyTank();
 	EnemyTank(float posX, float posY);
 	~EnemyTank();
 	void move(float time);

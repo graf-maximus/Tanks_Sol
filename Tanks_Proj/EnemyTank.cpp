@@ -1,20 +1,15 @@
 #include "EnemyTank.h"
 #include "ProjectileController.h"
-#include <iostream>
-
-EnemyTank::EnemyTank()
-{
-
-}
 
 EnemyTank::EnemyTank(float posX, float posY)
+	: Tanks(posX, posY, 1)
 {
 	this->tankRIGHTFilePath = ".\\data\\EnemyTank\\EnemyTankRIGHT.png";
 	this->tankLEFTFilePath = ".\\data\\EnemyTank\\EnemyTankLEFT.png";
 	this->tankDOWNFilePath = ".\\data\\EnemyTank\\EnemyTankDOWN.png";
 	this->tankUPFilePath = ".\\data\\EnemyTank\\EnemyTankUP.png";
 
-	this->setPosition(posX, posY);
+	//this->setPosition(posX, posY);
 	switch (this->getMoveDirection())
 	{
 	case FRKey::RIGHT :
@@ -30,6 +25,7 @@ EnemyTank::EnemyTank(float posX, float posY)
 		this->setSprite(tankUPFilePath);
 		break;
 	}
+
 	this->currentSpeed = 0.07;
 	this->projectileController = new ProjectileController(this);
 }

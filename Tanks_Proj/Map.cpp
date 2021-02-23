@@ -37,7 +37,7 @@ bool Map::createMap(GameInstance* game)
 						game->spawnWall(fileValue, j, i);
 					break;
 					case 18:
-						game->spawnEnemyController(j, i);
+						game->addEnemyController(j, i);
 					break;
 					default:
 						break;

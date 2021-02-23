@@ -1,19 +1,16 @@
 #include "Wall.h"
-#include <iostream>
+#include "HealthController.h"
 
-Wall::Wall()
-{
-}
-
-Wall::Wall(int posX, int posY)
+Wall::Wall(int posX, int posY, const char* wallFilePath, int beginHealth)
 {
 	this->posX = posX * 32;
 	this->posY = posY * 32;
-	this->currentSpeed = 0;
-	this->setSprite(this->wallFilePath);
+	this->wallFilePath = wallFilePath;
+	this->setSprite(wallFilePath);
+	this->healthController = new HealthController(beginHealth);
 }
 
 const char* Wall::getSpriteFilePath()
 {
-	return this->wallFilePath;
+	return wallFilePath;
 }

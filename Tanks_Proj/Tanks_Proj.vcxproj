@@ -145,33 +145,35 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BreakableWall.cpp" />
+    <ClCompile Include="BrickWall.cpp" />
     <ClCompile Include="EnemyController.cpp" />
     <ClCompile Include="EnemyTank.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameInstance.cpp" />
+    <ClCompile Include="HealthController.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="GameRules.cpp" />
     <ClCompile Include="PlayerTank.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="ProjectileController.cpp" />
     <ClCompile Include="Tanks.cpp" />
-    <ClCompile Include="UnbreakableWall.cpp" />
+    <ClCompile Include="SteelWall.cpp" />
     <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BreakableWall.h" />
+    <ClInclude Include="BrickWall.h" />
     <ClInclude Include="EnemyController.h" />
     <ClInclude Include="EnemyTank.h" />
     <ClInclude Include="Framework.h" />
     <ClInclude Include="GameInstance.h" />
+    <ClInclude Include="HealthController.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="GameRules.h" />
     <ClInclude Include="PlayerTank.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="ProjectileController.h" />
     <ClInclude Include="Tanks.h" />
-    <ClInclude Include="UnbreakableWall.h" />
+    <ClInclude Include="SteelWall.h" />
     <ClInclude Include="Wall.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

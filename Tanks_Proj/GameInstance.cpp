@@ -1,8 +1,8 @@
 #include "GameInstance.h"
-#include <iostream>
 
 GameInstance::GameInstance()
 {
+	this->enemyController = new EnemyController();
 }
 
 void GameInstance::spawnPlayer(int posX, int posY)
@@ -12,10 +12,10 @@ void GameInstance::spawnPlayer(int posX, int posY)
 	this->tanks.push_back(player);
 }
 
-void GameInstance::spawnEnemyController(int posX, int posY)
+void GameInstance::addEnemyController(int posX, int posY)
 {
 	if (enemyController == nullptr)
-		enemyController = new EnemyController();
+		this->enemyController = new EnemyController();
 
 	enemyController->addEnemySpawner(posX, posY);
 }
@@ -24,22 +24,17 @@ void GameInstance::spawnWall(int number, int posX, int posY)
 {
 	if (number == 11)
 	{
-		BreakableWall* wall = new BreakableWall(posX, posY);
+		BrickWall* wall = new BrickWall(posX, posY);
 		walls.push_back(wall);
 	}
 	else if (number == 15)
 	{
-		UnbreakableWall* wall = new UnbreakableWall(posX, posY);
+		SteelWall* wall = new SteelWall(posX, posY);
 		walls.push_back(wall);
 	}
 }
 
 void GameInstance::spawnPhoenix(int posX, int posY)
-{
-
-}
-
-void GameInstance::changeLevel()
 {
 
 }

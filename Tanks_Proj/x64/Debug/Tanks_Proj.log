@@ -1,25 +1,48 @@
 ﻿  EnemyController.cpp
-D:\doc\Tanks_Sol\Tanks_Proj\Tanks.h(9,20): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\doc\Tanks_Sol\Tanks_Proj\Tanks.h(10,20): warning C4305: 'initializing': truncation from 'double' to 'float'
 D:\doc\Tanks_Sol\Tanks_Proj\Projectile.h(10,24): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\doc\Tanks_Sol\Tanks_Proj\EnemyController.cpp(19,95): warning C4244: 'argument': conversion from '_Ty2' to 'float', possible loss of data
+D:\doc\Tanks_Sol\Tanks_Proj\EnemyController.cpp(18,95): warning C4244: 'argument': conversion from '_Ty2' to 'float', possible loss of data
           with
           [
               _Ty2=int
           ]
-D:\doc\Tanks_Sol\Tanks_Proj\EnemyController.cpp(19,63): warning C4244: 'argument': conversion from '_Ty1' to 'float', possible loss of data
+D:\doc\Tanks_Sol\Tanks_Proj\EnemyController.cpp(18,63): warning C4244: 'argument': conversion from '_Ty1' to 'float', possible loss of data
           with
           [
               _Ty1=int
           ]
-D:\doc\Tanks_Sol\Tanks_Proj\EnemyController.cpp(37,103): warning C4244: 'argument': conversion from '_Ty2' to 'float', possible loss of data
+D:\doc\Tanks_Sol\Tanks_Proj\EnemyController.cpp(36,103): warning C4244: 'argument': conversion from '_Ty2' to 'float', possible loss of data
           with
           [
               _Ty2=int
           ]
-D:\doc\Tanks_Sol\Tanks_Proj\EnemyController.cpp(37,67): warning C4244: 'argument': conversion from '_Ty1' to 'float', possible loss of data
+D:\doc\Tanks_Sol\Tanks_Proj\EnemyController.cpp(36,67): warning C4244: 'argument': conversion from '_Ty1' to 'float', possible loss of data
           with
           [
               _Ty1=int
           ]
-D:\doc\Tanks_Sol\Tanks_Proj\EnemyController.cpp(72,34): warning C4018: '>=': signed/unsigned mismatch
+D:\doc\Tanks_Sol\Tanks_Proj\EnemyController.cpp(70,34): warning C4018: '>=': signed/unsigned mismatch
+  Game.cpp
+D:\doc\Tanks_Sol\Tanks_Proj\Tanks.h(10,20): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\doc\Tanks_Sol\Tanks_Proj\Projectile.h(10,24): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\doc\Tanks_Sol\Tanks_Proj\Game.cpp(43,23): warning C4244: '=': conversion from 'unsigned int' to 'float', possible loss of data
+D:\doc\Tanks_Sol\Tanks_Proj\Game.cpp(97,22): warning C4244: '=': conversion from 'unsigned int' to 'float', possible loss of data
+  GameInstance.cpp
+D:\doc\Tanks_Sol\Tanks_Proj\Tanks.h(10,20): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\doc\Tanks_Sol\Tanks_Proj\Projectile.h(10,24): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\doc\Tanks_Sol\Tanks_Proj\GameInstance.cpp(10,38): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\doc\Tanks_Sol\Tanks_Proj\GameInstance.cpp(10,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Map.cpp
+D:\doc\Tanks_Sol\Tanks_Proj\Tanks.h(10,20): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\doc\Tanks_Sol\Tanks_Proj\Projectile.h(10,24): warning C4305: 'initializing': truncation from 'double' to 'float'
+  GameRules.cpp
+D:\doc\Tanks_Sol\Tanks_Proj\Tanks.h(10,20): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\doc\Tanks_Sol\Tanks_Proj\Projectile.h(10,24): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\doc\Tanks_Sol\Tanks_Proj\GameRules.cpp(36,44): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\doc\Tanks_Sol\Tanks_Proj\GameRules.cpp(36,32): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Wall.cpp
+D:\doc\Tanks_Sol\Tanks_Proj\Wall.cpp(6,20): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\doc\Tanks_Sol\Tanks_Proj\Wall.cpp(7,20): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
+D:\doc\Tanks_Sol\Tanks_Proj\GameRules.cpp(31): warning C4715: 'GameRules::getSprite': not all control paths return a value
   Tanks_Proj.vcxproj -> D:\doc\Tanks_Sol\x64\Debug\Tanks_Proj.exe

@@ -3,8 +3,8 @@
 #include "PlayerTank.h"
 #include "EnemyController.h"
 #include "ProjectileController.h"
-#include "BreakableWall.h"
-#include "UnbreakableWall.h"
+#include "BrickWall.h"
+#include "SteelWall.h"
 #include "GameRules.h"
 #include <vector>
 
@@ -19,8 +19,7 @@ public:
 
 	GameInstance();
 	void spawnPlayer(int posX, int posY);
-	void spawnEnemyController(int posX, int posY);
+	void addEnemyController(int posX, int posY);
 	void spawnWall(int number, int posX, int posY);
 	void spawnPhoenix(int posX, int posY);
-	void changeLevel();
 };
