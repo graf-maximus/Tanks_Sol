@@ -22,4 +22,5 @@ public:
 	void addEnemyController(int posX, int posY);
 	void spawnWall(int number, int posX, int posY);
 	void spawnPhoenix(int posX, int posY);
+	void gameOver();
 };

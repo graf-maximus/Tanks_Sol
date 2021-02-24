@@ -6,6 +6,7 @@
 /* Test Framework realization */
 class MyFramework : public Framework {
 
+	int windowWidth = 544, windowHeight = 480;
 	GameInstance* game;
 	Map* map;
 	float clock = 0;
@@ -15,8 +16,8 @@ public:
 
 	virtual void PreInit(int& width, int& height, bool& fullscreen)
 	{
-		width = 544;
-		height = 480;
+		width = windowWidth;
+		height = windowHeight;
 		fullscreen = false;
 	}
 
@@ -44,11 +45,12 @@ public:
 
 		for (int i = 0; i < game->tanks.size(); i++)
 		{
+			if (game->tanks.at(i) == nullptr)
+				continue;
+
 			if (game->tanks.at(i)->checkIntersection(time, game->walls, game->tanks, game->player))
 			{
-				if (game->tanks.at(i) == game->player)
-					game->tanks.at(i)->setSpeed(0.f);
-				else
+				if (game->tanks.at(i) != game->player)
 					game->tanks.at(i)->setMoveDirection(static_cast<FRKey>(std::rand() % 4));
 			}
 			else
@@ -59,11 +61,11 @@ public:
 				if (game->tanks.at(i)->getProjectileController()->getSpawnedProjectile()->checkIntersection(time, game->walls, game->tanks, game->player))
 				{
 					game->tanks.at(i)->getProjectileController()->destroyProjectile();
-	/*				if (game->tanks.at(i) != game->player)
+					if (!game->player->getHealthController()->isAlive())
 					{
-						game->tanks.erase(game->tanks.begin() + i);
-						i--;
-					}*/
+						game->gameOver();
+						Close();
+					}
 				}
 				else // потім треба буде прибрати (треба буде віднімати життя у танків)
 					game->tanks.at(i)->getProjectileController()->getSpawnedProjectile()->move(time);

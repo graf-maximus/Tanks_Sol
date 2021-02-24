@@ -1,6 +1,6 @@
 #include "BrickWall.h"
 
 BrickWall::BrickWall(int posX, int posY)
-	: Wall(posX, posY, ".\\data\\BrickWall.png", 4)
+	: Wall(posX, posY, ".\\data\\BrickWall.png", 1)
 {
 }

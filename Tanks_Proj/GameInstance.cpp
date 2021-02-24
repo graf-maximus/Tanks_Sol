@@ -1,4 +1,5 @@
 #include "GameInstance.h"
+#include <iostream>
 
 GameInstance::GameInstance()
 {
@@ -37,4 +38,9 @@ void GameInstance::spawnWall(int number, int posX, int posY)
 void GameInstance::spawnPhoenix(int posX, int posY)
 {
 
+}
+
+void GameInstance::gameOver()
+{
+	std::cout << "Game over";
 }

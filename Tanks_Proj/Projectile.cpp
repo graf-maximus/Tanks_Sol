@@ -46,10 +46,59 @@ Projectile::~Projectile()
 		destroySprite(this->sprite);
 }
 
-bool Projectile::checkIntersection(float time, std::vector<Wall*> walls, std::vector<Tanks*> tanks, Tanks* player)
+bool Projectile::checkIntersection(float time, std::vector<Wall*>& walls, std::vector<Tanks*>& tanks, Tanks* player)
 {
-	if (GameRules::checkIntersection(time, walls, tanks, player))
-		return true;
+
+
+
+
+	float objPosX, objPosY, wallPosX, wallPosY;
+	int objWidth, objHeight, wallWidth, wallHeight;
+	this->getPosition(objPosX, objPosY);
+
+	getSpriteSize(this->getSprite(), objWidth, objHeight);
+
+	switch (this->getMoveDirection())
+	{
+	case FRKey::RIGHT:
+		objPosX += this->getSpeed() * time;
+		break;
+	case FRKey::LEFT:
+		objPosX -= this->getSpeed() * time;
+		break;
+	case FRKey::DOWN:
+		objPosY += this->getSpeed() * time;
+		break;
+	case FRKey::UP:
+		objPosY -= this->getSpeed() * time;
+		break;
+	default:
+		break;
+	}
+
+	for (int i = 0; i < walls.size(); i++)
+	{
+		getSpriteSize(walls.at(i)->getSprite(), wallWidth, wallHeight);
+		walls.at(i)->getPosition(wallPosX, wallPosY);
+
+		if (objPosX + objWidth >= wallPosX + 1 &&
+			objPosY + objHeight >= wallPosY + 1 &&
+			wallPosX + wallWidth >= objPosX + 1 &&
+			wallPosY + wallHeight >= objPosY + 1)
+		{
+			walls.at(i)->getHealthController()->changeLife(-1);
+			if (!walls.at(i)->getHealthController()->isAlive())
+				walls.erase(walls.begin() + i);
+
+			return true;
+		}
+	}
+
+
+
+
+
+
 
 	if (this != nullptr)
 	{
@@ -93,6 +142,7 @@ bool Projectile::checkIntersection(float time, std::vector<Wall*> walls, std::ve
 			projectilePosX + projectileWidth >= tankPosX + 1 &&
 			projectilePosY + projectileHeight >= tankPosY + 1)
 		{
+			player->getHealthController()->changeLife(-1);
 			return true;
 		}
 	}
@@ -110,6 +160,10 @@ bool Projectile::checkIntersection(float time, std::vector<Wall*> walls, std::ve
 					projectilePosX + projectileWidth >= tankPosX + 1 &&
 					projectilePosY + projectileHeight >= tankPosY + 1)
 				{
+					tanks.at(i)->getHealthController()->changeLife(-1);
+					if (!tanks.at(i)->getHealthController()->isAlive())
+						tanks.erase(tanks.begin() + i);
+
 					return true;
 				}
 			}

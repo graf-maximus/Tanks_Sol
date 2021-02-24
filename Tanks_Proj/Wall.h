@@ -12,5 +12,7 @@ protected:
 public:
 
 	Wall(int posX, int posY, const char* wallFilePath, int beginHealth);
+	~Wall();
 	const char* getSpriteFilePath();
+	HealthController* getHealthController();
 };

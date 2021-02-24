@@ -1,17 +1,11 @@
-﻿  BreakableWall.cpp
-D:\doc\Tanks_Sol\Tanks_Proj\BreakableWall.cpp(9,20): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-D:\doc\Tanks_Sol\Tanks_Proj\BreakableWall.cpp(10,20): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  GameInstance.cpp
-D:\doc\Tanks_Sol\Tanks_Proj\Tanks.h(9,20): warning C4305: 'initializing': truncation from 'double' to 'float'
+﻿  Game.cpp
+D:\doc\Tanks_Sol\Tanks_Proj\Tanks.h(10,20): warning C4305: 'initializing': truncation from 'double' to 'float'
 D:\doc\Tanks_Sol\Tanks_Proj\Projectile.h(10,24): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\doc\Tanks_Sol\Tanks_Proj\GameInstance.cpp(10,38): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\doc\Tanks_Sol\Tanks_Proj\GameInstance.cpp(10,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  UnbreakableWall.cpp
-D:\doc\Tanks_Sol\Tanks_Proj\UnbreakableWall.cpp(9,20): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-D:\doc\Tanks_Sol\Tanks_Proj\UnbreakableWall.cpp(10,20): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\doc\Tanks_Sol\Tanks_Proj\Game.cpp(44,23): warning C4244: '=': conversion from 'unsigned int' to 'float', possible loss of data
+D:\doc\Tanks_Sol\Tanks_Proj\Game.cpp(99,22): warning C4244: '=': conversion from 'unsigned int' to 'float', possible loss of data
   Generating code
-  4 of 352 functions ( 1.1%) were compiled, the rest were copied from previous compilation.
+  10 of 389 functions ( 2.6%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    2 functions had inline decision re-evaluated but remain unchanged
+    6 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Tanks_Proj.vcxproj -> D:\doc\Tanks_Sol\x64\Release\Tanks_Proj.exe

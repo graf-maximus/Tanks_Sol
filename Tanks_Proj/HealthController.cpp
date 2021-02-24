@@ -10,11 +10,6 @@ HealthController::HealthController(int health)
 	this->healthPoint = health;
 }
 
-int HealthController::getHealth()
-{
-	return this->healthPoint;
-}
-
 bool HealthController::isAlive()
 {
 	if (healthPoint <= 0)

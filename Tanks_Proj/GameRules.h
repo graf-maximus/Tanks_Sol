@@ -25,5 +25,5 @@ public:
 	virtual float getSpeed();
 	virtual void setMoveDirection(FRKey direction);
 	virtual FRKey getMoveDirection();
-	virtual bool checkIntersection(float time, std::vector<Wall*> walls, std::vector<Tanks*> tanks, Tanks* player);
+	virtual bool checkIntersection(float time, std::vector<Wall*>& walls, std::vector<Tanks*>& tanks, const Tanks* player);
 };

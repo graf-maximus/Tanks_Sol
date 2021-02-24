@@ -9,7 +9,7 @@ Map::Map()
 
 bool Map::createMap(GameInstance* game)
 {
-	std::ifstream file("D:\\doc\\Tanks_Sol\\Tanks_Proj\\17x15.txt");
+	std::ifstream file(".\\data\\17x15.txt");
 	int fileValue;
 	if (!file)
 	{

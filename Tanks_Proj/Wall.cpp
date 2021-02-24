@@ -10,7 +10,20 @@ Wall::Wall(int posX, int posY, const char* wallFilePath, int beginHealth)
 	this->healthController = new HealthController(beginHealth);
 }
 
+Wall::~Wall()
+{
+	if (this->sprite != nullptr)
+		destroySprite(this->sprite);
+	delete healthController;
+	healthController = nullptr;
+}
+
 const char* Wall::getSpriteFilePath()
 {
 	return wallFilePath;
+}
+
+HealthController* Wall::getHealthController()
+{
+	return this->healthController;
 }
