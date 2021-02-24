@@ -77,7 +77,7 @@ FRKey GameRules::getMoveDirection()
 	return this->moveDirection;
 }
 
-bool GameRules::checkIntersection(float time, std::vector<Wall*>& walls, std::vector<Tanks*>& tanks, const Tanks* player)
+bool GameRules::checkIntersection(float time, GameInstance*& game)
 {
 	float objPosX, objPosY, wallPosX, wallPosY;
 	int objWidth, objHeight, wallWidth, wallHeight;
@@ -103,10 +103,10 @@ bool GameRules::checkIntersection(float time, std::vector<Wall*>& walls, std::ve
 		break;
 	}
 
-	for (int i = 0; i < walls.size(); i++)
+	for (int i = 0; i < game->walls.size(); i++)
 	{
-		getSpriteSize(walls.at(i)->getSprite(), wallWidth, wallHeight);
-		walls.at(i)->getPosition(wallPosX, wallPosY);
+		getSpriteSize(game->walls.at(i)->getSprite(), wallWidth, wallHeight);
+		game->walls.at(i)->getPosition(wallPosX, wallPosY);
 
 		if (objPosX + objWidth >= wallPosX + 1 &&
 			objPosY + objHeight >= wallPosY + 1 &&

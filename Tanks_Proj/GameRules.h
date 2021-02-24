@@ -2,8 +2,7 @@
 #include "Framework.h"
 #include <vector>
 
-class Wall;
-class Tanks;
+class GameInstance;
 
 class GameRules
 {
@@ -25,5 +24,5 @@ public:
 	virtual float getSpeed();
 	virtual void setMoveDirection(FRKey direction);
 	virtual FRKey getMoveDirection();
-	virtual bool checkIntersection(float time, std::vector<Wall*>& walls, std::vector<Tanks*>& tanks, const Tanks* player);
+	virtual bool checkIntersection(float time, GameInstance*& game);
 };

@@ -1,6 +1,7 @@
 #include "Tanks.h"
 #include "ProjectileController.h"
 #include "HealthController.h"
+#include "GameInstance.h"
 
 Tanks::Tanks(float posX, float posY, int health)
 {
@@ -39,9 +40,9 @@ void Tanks::setMoveDirection(FRKey direction)
 	}
 }
 
-bool Tanks::checkIntersection(float time, std::vector<Wall*> walls, std::vector<Tanks*> tanks, Tanks* player)
+bool Tanks::checkIntersection(float time, GameInstance*& game)
 {
-	if (GameRules::checkIntersection(time, walls, tanks, player))
+	if (GameRules::checkIntersection(time, game))
 		return true;
 
 	float tank1PosX, tank1PosY, tank2PosX, tank2PosY;
@@ -67,12 +68,12 @@ bool Tanks::checkIntersection(float time, std::vector<Wall*> walls, std::vector<
 		break;
 	}
 
-	for (int i = 0; i < tanks.size(); i++)
+	for (int i = 0; i < game->tanks.size(); i++)
 	{
-		if (this != tanks.at(i))
+		if (this != game->tanks.at(i))
 		{
-			tanks.at(i)->getPosition(tank2PosX, tank2PosY);
-			getSpriteSize(tanks.at(i)->getSprite(), tank2Width, tank2Height);
+			game->tanks.at(i)->getPosition(tank2PosX, tank2PosY);
+			getSpriteSize(game->tanks.at(i)->getSprite(), tank2Width, tank2Height);
 
 			if (tank1PosX + tank1Width >= tank2PosX + 1 &&
 				tank1PosY + tank1Height >= tank2PosY + 1 &&

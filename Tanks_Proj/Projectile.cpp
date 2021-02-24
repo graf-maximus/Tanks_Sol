@@ -1,6 +1,7 @@
 #include "Projectile.h"
 #include "Tanks.h"
 #include "Wall.h"
+#include "GameInstance.h"
 #include <iostream>
 
 Projectile::Projectile(float posX, float posY, FRKey moveDirection, Tanks* owner)
@@ -12,32 +13,32 @@ Projectile::Projectile(float posX, float posY, FRKey moveDirection, Tanks* owner
 	this->owner = owner;
 	this->setSprite(projectileFilePath);
 
-	/*int tankSpriteSizeWidth, tankSpriteSizeHeight;
-	getSpriteSize(ownerTank->getSprite(), tankSpriteSizeWidth, tankSpriteSizeHeight);
+	int tankSpriteSizeWidth, tankSpriteSizeHeight;
+	getSpriteSize(this->owner->getSprite(), tankSpriteSizeWidth, tankSpriteSizeHeight);
 
 	switch (moveDirection)
 	{
 	case FRKey::RIGHT:
-		ownerTank->getTankPosition(this->posX, this->posY);
+		owner->getPosition(this->posX, this->posY);
 		this->posX += tankSpriteSizeWidth;
 		this->posY += tankSpriteSizeHeight / 2;
 		break;
 	case FRKey::LEFT:
-		ownerTank->getTankPosition(this->posX, this->posY);
+		owner->getPosition(this->posX, this->posY);
 		this->posY += tankSpriteSizeHeight / 2;
 		break;
 	case FRKey::DOWN:
-		ownerTank->getTankPosition(this->posX, this->posY);
+		owner->getPosition(this->posX, this->posY);
 		this->posX += tankSpriteSizeWidth / 2;
 		this->posY += tankSpriteSizeHeight;
 		break;
 	case FRKey::UP:
-		ownerTank->getTankPosition(this->posX, this->posY);
+		owner->getPosition(this->posX, this->posY);
 		this->posX += tankSpriteSizeWidth / 2;
 		break;
 	default:
 		break;
-	}*/
+	}
 }
 
 Projectile::~Projectile()
@@ -46,7 +47,7 @@ Projectile::~Projectile()
 		destroySprite(this->sprite);
 }
 
-bool Projectile::checkIntersection(float time, std::vector<Wall*>& walls, std::vector<Tanks*>& tanks, Tanks* player)
+bool Projectile::checkIntersection(float time, GameInstance*& game)
 {
 
 
@@ -76,19 +77,32 @@ bool Projectile::checkIntersection(float time, std::vector<Wall*>& walls, std::v
 		break;
 	}
 
-	for (int i = 0; i < walls.size(); i++)
+	getSpriteSize(game->phoenix->getSprite(), wallWidth, wallHeight);
+	game->phoenix->getPosition(wallPosX, wallPosY);
+
+	if (objPosX + objWidth >= wallPosX + 1 &&
+		objPosY + objHeight >= wallPosY + 1 &&
+		wallPosX + wallWidth >= objPosX + 1 &&
+		wallPosY + wallHeight >= objPosY + 1)
 	{
-		getSpriteSize(walls.at(i)->getSprite(), wallWidth, wallHeight);
-		walls.at(i)->getPosition(wallPosX, wallPosY);
+		game->gameOver();
+
+		return true;
+	}
+
+	for (int i = 0; i < game->walls.size(); i++)
+	{
+		getSpriteSize(game->walls.at(i)->getSprite(), wallWidth, wallHeight);
+		game->walls.at(i)->getPosition(wallPosX, wallPosY);
 
 		if (objPosX + objWidth >= wallPosX + 1 &&
 			objPosY + objHeight >= wallPosY + 1 &&
 			wallPosX + wallWidth >= objPosX + 1 &&
 			wallPosY + wallHeight >= objPosY + 1)
 		{
-			walls.at(i)->getHealthController()->changeLife(-1);
-			if (!walls.at(i)->getHealthController()->isAlive())
-				walls.erase(walls.begin() + i);
+			game->walls.at(i)->getHealthController()->changeLife(-1);
+			if (!game->walls.at(i)->getHealthController()->isAlive())
+				game->walls.erase(game->walls.begin() + i);
 
 			return true;
 		}
@@ -132,37 +146,37 @@ bool Projectile::checkIntersection(float time, std::vector<Wall*>& walls, std::v
 		break;
 	}
 
-	if (this->owner != player)
+	if (this->owner != game->player)
 	{
-		player->getPosition(tankPosX, tankPosY);
-		getSpriteSize(player->getSprite(), tankWidth, tankHeight);
+		game->player->getPosition(tankPosX, tankPosY);
+		getSpriteSize(game->player->getSprite(), tankWidth, tankHeight);
 
 		if (tankPosX + tankWidth >= projectilePosX + 1 &&
 			tankPosY + tankHeight >= projectilePosY + 1 &&
 			projectilePosX + projectileWidth >= tankPosX + 1 &&
 			projectilePosY + projectileHeight >= tankPosY + 1)
 		{
-			player->getHealthController()->changeLife(-1);
+			game->player->getHealthController()->changeLife(-1);
 			return true;
 		}
 	}
 	else
 	{
-		for (int i = 0; i < tanks.size(); i++)
+		for (int i = 0; i < game->tanks.size(); i++)
 		{
-			if (tanks.at(i) != player)
+			if (game->tanks.at(i) != game->player)
 			{
-				tanks.at(i)->getPosition(tankPosX, tankPosY);
-				getSpriteSize(tanks.at(i)->getSprite(), tankWidth, tankHeight);
+				game->tanks.at(i)->getPosition(tankPosX, tankPosY);
+				getSpriteSize(game->tanks.at(i)->getSprite(), tankWidth, tankHeight);
 
 				if (tankPosX + tankWidth >= projectilePosX + 1 &&
 					tankPosY + tankHeight >= projectilePosY + 1 &&
 					projectilePosX + projectileWidth >= tankPosX + 1 &&
 					projectilePosY + projectileHeight >= tankPosY + 1)
 				{
-					tanks.at(i)->getHealthController()->changeLife(-1);
-					if (!tanks.at(i)->getHealthController()->isAlive())
-						tanks.erase(tanks.begin() + i);
+					game->tanks.at(i)->getHealthController()->changeLife(-1);
+					if (!game->tanks.at(i)->getHealthController()->isAlive())
+						game->tanks.erase(game->tanks.begin() + i);
 
 					return true;
 				}

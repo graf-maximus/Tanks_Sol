@@ -1,63 +1,6 @@
-﻿  EnemyController.cpp
-D:\doc\Tanks_Sol\Tanks_Proj\Tanks.h(10,20): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\doc\Tanks_Sol\Tanks_Proj\Projectile.h(10,24): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\doc\Tanks_Sol\Tanks_Proj\EnemyController.cpp(18,95): warning C4244: 'argument': conversion from '_Ty2' to 'float', possible loss of data
-          with
-          [
-              _Ty2=int
-          ]
-D:\doc\Tanks_Sol\Tanks_Proj\EnemyController.cpp(18,63): warning C4244: 'argument': conversion from '_Ty1' to 'float', possible loss of data
-          with
-          [
-              _Ty1=int
-          ]
-D:\doc\Tanks_Sol\Tanks_Proj\EnemyController.cpp(36,103): warning C4244: 'argument': conversion from '_Ty2' to 'float', possible loss of data
-          with
-          [
-              _Ty2=int
-          ]
-D:\doc\Tanks_Sol\Tanks_Proj\EnemyController.cpp(36,67): warning C4244: 'argument': conversion from '_Ty1' to 'float', possible loss of data
-          with
-          [
-              _Ty1=int
-          ]
-D:\doc\Tanks_Sol\Tanks_Proj\EnemyController.cpp(70,34): warning C4018: '>=': signed/unsigned mismatch
-  EnemyTank.cpp
-D:\doc\Tanks_Sol\Tanks_Proj\Tanks.h(10,20): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\doc\Tanks_Sol\Tanks_Proj\Projectile.h(10,24): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\doc\Tanks_Sol\Tanks_Proj\EnemyTank.cpp(29,27): warning C4305: '=': truncation from 'double' to 'float'
-  Game.cpp
-D:\doc\Tanks_Sol\Tanks_Proj\Tanks.h(10,20): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\doc\Tanks_Sol\Tanks_Proj\Projectile.h(10,24): warning C4305: 'initializing': truncation from 'double' to 'float'
+﻿  Game.cpp
+D:\doc\Tanks_Sol\Tanks_Proj\Tanks.h(11,20): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\doc\Tanks_Sol\Tanks_Proj\Projectile.h(11,24): warning C4305: 'initializing': truncation from 'double' to 'float'
 D:\doc\Tanks_Sol\Tanks_Proj\Game.cpp(43,23): warning C4244: '=': conversion from 'unsigned int' to 'float', possible loss of data
-D:\doc\Tanks_Sol\Tanks_Proj\Game.cpp(98,22): warning C4244: '=': conversion from 'unsigned int' to 'float', possible loss of data
-  GameInstance.cpp
-D:\doc\Tanks_Sol\Tanks_Proj\Tanks.h(10,20): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\doc\Tanks_Sol\Tanks_Proj\Projectile.h(10,24): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\doc\Tanks_Sol\Tanks_Proj\GameInstance.cpp(11,38): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\doc\Tanks_Sol\Tanks_Proj\GameInstance.cpp(11,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  Map.cpp
-D:\doc\Tanks_Sol\Tanks_Proj\Tanks.h(10,20): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\doc\Tanks_Sol\Tanks_Proj\Projectile.h(10,24): warning C4305: 'initializing': truncation from 'double' to 'float'
-  GameRules.cpp
-D:\doc\Tanks_Sol\Tanks_Proj\Tanks.h(10,20): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\doc\Tanks_Sol\Tanks_Proj\Projectile.h(10,24): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\doc\Tanks_Sol\Tanks_Proj\GameRules.cpp(36,44): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\doc\Tanks_Sol\Tanks_Proj\GameRules.cpp(36,32): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  PlayerTank.cpp
-D:\doc\Tanks_Sol\Tanks_Proj\Tanks.h(10,20): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\doc\Tanks_Sol\Tanks_Proj\Projectile.h(10,24): warning C4305: 'initializing': truncation from 'double' to 'float'
-  Projectile.cpp
-D:\doc\Tanks_Sol\Tanks_Proj\Projectile.h(10,24): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\doc\Tanks_Sol\Tanks_Proj\Tanks.h(10,20): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\doc\Tanks_Sol\Tanks_Proj\Projectile.cpp(11,20): warning C4305: 'argument': truncation from 'double' to 'float'
-  ProjectileController.cpp
-D:\doc\Tanks_Sol\Tanks_Proj\Projectile.h(10,24): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\doc\Tanks_Sol\Tanks_Proj\Tanks.h(10,20): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\doc\Tanks_Sol\Tanks_Proj\ProjectileController.cpp(40,34): warning C4018: '>=': signed/unsigned mismatch
-  Tanks.cpp
-D:\doc\Tanks_Sol\Tanks_Proj\Tanks.h(10,20): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\doc\Tanks_Sol\Tanks_Proj\Projectile.h(10,24): warning C4305: 'initializing': truncation from 'double' to 'float'
-  Generating Code...
-D:\doc\Tanks_Sol\Tanks_Proj\GameRules.cpp(31): warning C4715: 'GameRules::getSprite': not all control paths return a value
+D:\doc\Tanks_Sol\Tanks_Proj\Game.cpp(101,22): warning C4244: '=': conversion from 'unsigned int' to 'float', possible loss of data
   Tanks_Proj.vcxproj -> D:\doc\Tanks_Sol\x64\Debug\Tanks_Proj.exe

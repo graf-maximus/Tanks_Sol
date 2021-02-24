@@ -37,12 +37,6 @@
     <Filter Include="Header Files\Tanks">
       <UniqueIdentifier>{87459e0b-783e-4755-922d-ab08bcecb9ce}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Map">
-      <UniqueIdentifier>{cf46f17a-15b9-42e8-b314-8dc0427260d3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Map">
-      <UniqueIdentifier>{4ff8b3d0-752a-407d-b7a8-875c283095f5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Controllers">
       <UniqueIdentifier>{6b3c2b62-aaf0-4713-baa6-3a88b4c73a2c}</UniqueIdentifier>
     </Filter>
@@ -72,9 +66,6 @@
     <ClCompile Include="GameRules.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Map.cpp">
-      <Filter>Source Files\Map</Filter>
-    </ClCompile>
     <ClCompile Include="Tanks.cpp">
       <Filter>Source Files\Tanks</Filter>
     </ClCompile>
@@ -99,6 +90,9 @@
     <ClCompile Include="HealthController.cpp">
       <Filter>Source Files\Controllers</Filter>
     </ClCompile>
+    <ClCompile Include="Phoenix.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameRules.h">
@@ -112,9 +106,6 @@
     </ClInclude>
     <ClInclude Include="Projectile.h">
       <Filter>Header Files\Projectiles</Filter>
-    </ClInclude>
-    <ClInclude Include="Map.h">
-      <Filter>Header Files\Map</Filter>
     </ClInclude>
     <ClInclude Include="Framework.h">
       <Filter>Header Files\Game</Filter>
@@ -142,6 +133,9 @@
     </ClInclude>
     <ClInclude Include="HealthController.h">
       <Filter>Header Files\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="Phoenix.h">
+      <Filter>Header Files\Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

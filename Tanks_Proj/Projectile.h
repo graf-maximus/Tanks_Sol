@@ -4,6 +4,7 @@
 
 class Tanks;
 class Wall;
+class GameInstance;
 
 class Projectile : public GameRules
 {
@@ -15,5 +16,5 @@ public:
 
 	Projectile(float posX, float posY, FRKey moveDirection, Tanks* owner);
 	~Projectile();
-	bool checkIntersection(float time, std::vector<Wall*>& walls, std::vector<Tanks*>& tanks, Tanks* player);
+	bool checkIntersection(float time, GameInstance*& game);
 };

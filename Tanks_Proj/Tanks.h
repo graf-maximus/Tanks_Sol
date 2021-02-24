@@ -3,6 +3,7 @@
 
 class ProjectileController;
 class HealthController;
+class GameInstance;
 
 class Tanks : public GameRules
 {
@@ -25,5 +26,5 @@ public:
 	virtual float getTankStaticSpeed();
 	virtual ProjectileController* getProjectileController();
 	virtual HealthController* getHealthController();
-	virtual bool checkIntersection(float time, std::vector<Wall*> walls, std::vector<Tanks*> tanks, Tanks* player);
+	virtual bool checkIntersection(float time, GameInstance*& game);
 };
