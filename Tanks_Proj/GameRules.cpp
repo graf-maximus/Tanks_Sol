@@ -2,6 +2,15 @@
 #include "GameInstance.h"
 #include <iostream>
 
+GameRules::~GameRules()
+{
+	if (this->sprite != nullptr)
+	{
+		destroySprite(this->sprite);
+		this->sprite = nullptr;
+	}
+}
+
 void GameRules::setPosition(float x, float y)
 {
 	this->posX = x * 32;

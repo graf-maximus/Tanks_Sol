@@ -1,38 +1,17 @@
 #include "EnemyTank.h"
 #include "ProjectileController.h"
 
-EnemyTank::EnemyTank(float posX, float posY, bool isFlashing)
-	: Tanks(posX, posY, 1, isFlashing)
+EnemyTank::EnemyTank(float posX, float posY, int health, float moveSpeed, float projectileSpeed, bool isFlashing)
+	: Tanks(posX, posY, health, isFlashing)
 {
-	this->tankRIGHTFilePath = ".\\data\\EnemyTank\\EnemyTankRIGHT.png";
-	this->tankLEFTFilePath = ".\\data\\EnemyTank\\EnemyTankLEFT.png";
-	this->tankDOWNFilePath = ".\\data\\EnemyTank\\EnemyTankDOWN.png";
-	this->tankUPFilePath = ".\\data\\EnemyTank\\EnemyTankUP.png";
-
-	//this->setPosition(posX, posY);
-	switch (this->getMoveDirection())
-	{
-	case FRKey::RIGHT :
-		this->setSprite(tankRIGHTFilePath);
-		break;
-	case FRKey::LEFT:
-		this->setSprite(tankLEFTFilePath);
-		break;
-	case FRKey::DOWN:
-		this->setSprite(tankDOWNFilePath);
-		break;
-	case FRKey::UP:
-		this->setSprite(tankUPFilePath);
-		break;
-	}
-
-	this->currentSpeed = 0.07;
-	this->projectileController = new ProjectileController(this);
+	this->currentSpeed = (moveSpeed/1.5) * this->staticSpeed;
+	this->projectileController->setSpeed(projectileSpeed/2);
 }
 
 EnemyTank::~EnemyTank()
 {
-	delete projectileController;
+	if (this->projectileController != nullptr)
+		delete projectileController;
 }
 
 void EnemyTank::setMoveDirection(FRKey direction)
@@ -49,10 +28,14 @@ void EnemyTank::spawnProjectile(float time)
 
 void EnemyTank::move(float time)
 {
+	int screenW, screenH, tankW, tankH;
+	getScreenSize(screenW, screenH);
+	getSpriteSize(this->getSprite(), tankW, tankH);
+
 	switch (this->moveDirection)
 	{
 	case FRKey::RIGHT:
-		if (this->posX + this->currentSpeed * time <= 544)
+		if (this->posX + this->currentSpeed * time <= screenW - tankW)
 			this->posX += this->currentSpeed * time;
 		else
 			this->intersectionWall = true;
@@ -64,7 +47,7 @@ void EnemyTank::move(float time)
 			this->intersectionWall = true;
 		break;
 	case FRKey::DOWN:
-		if (this->posY + this->currentSpeed * time <= 480)
+		if (this->posY + this->currentSpeed * time <= screenH - tankH)
 			this->posY += this->currentSpeed * time;
 		else
 			this->intersectionWall = true;

@@ -13,7 +13,8 @@ Tanks::Tanks(float posX, float posY, int health, bool isFlashing)
 
 Tanks::~Tanks()
 {
-	
+	delete projectileController;
+	delete healthController;
 }
 
 void Tanks::setMoveDirection(FRKey direction)
@@ -130,13 +131,14 @@ void Tanks::setTier(int tier)
 
 void Tanks::move(float time)
 {
-	int screenW, screenH;
+	int screenW, screenH, tankW, tankH;
 	getScreenSize(screenW, screenH);
+	getSpriteSize(this->getSprite(), tankW, tankH);
 
 	switch (this->moveDirection)
 	{
 	case FRKey::RIGHT:
-		if (this->posX + this->currentSpeed * time <= screenW - 32)
+		if (this->posX + this->currentSpeed * time <= screenW - tankW)
 			this->posX += this->currentSpeed * time;
 		break;
 	case FRKey::LEFT:
@@ -144,7 +146,7 @@ void Tanks::move(float time)
 			this->posX -= this->currentSpeed * time;
 		break;
 	case FRKey::DOWN:
-		if (this->posY + this->currentSpeed * time <= screenH - 32)
+		if (this->posY + this->currentSpeed * time <= screenH - tankH)
 			this->posY += this->currentSpeed * time;
 		break;
 	case FRKey::UP:

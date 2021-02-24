@@ -1,10 +1,4 @@
 #include "ProjectileController.h"
-#include <iostream>
-
-ProjectileController::ProjectileController()
-{
-
-}
 
 ProjectileController::ProjectileController(Tanks* owner)
 {
@@ -92,7 +86,7 @@ bool ProjectileController::needToSpawn()
 	return false;
 }
 
-void ProjectileController::setSpeed(int speed)
+void ProjectileController::setSpeed(float speed)
 {
 	this->projectileSpeed = this->defaultSpeed * speed;
 }

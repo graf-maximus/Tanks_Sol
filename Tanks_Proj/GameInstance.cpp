@@ -8,6 +8,17 @@ GameInstance::GameInstance()
 	this->bonusSpawner = new BonusSpawner();
 }
 
+GameInstance::~GameInstance()
+{
+	delete player;
+	delete enemyController;
+	delete bonusSpawner;
+	delete phoenix;
+	tanks.clear();
+	walls.clear();
+	delete bonus;
+}
+
 void GameInstance::spawnPlayer(int posX, int posY)
 {
 	this->player = new PlayerTank(posX, posY);
@@ -58,7 +69,7 @@ void GameInstance::gameOver()
 
 bool GameInstance::createMap()
 {
-	std::ifstream file(".\\data\\17x15.txt");
+	std::ifstream file(".\\data\\15x15.txt");
 	char fileValue;
 	if (!file)
 	{

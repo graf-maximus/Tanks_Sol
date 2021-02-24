@@ -152,7 +152,11 @@
     <ClCompile Include="BonusTank.cpp" />
     <ClCompile Include="BonusThirdStar.cpp" />
     <ClCompile Include="BrickWall.cpp" />
+    <ClCompile Include="EnemyArmorTank.cpp" />
     <ClCompile Include="EnemyController.cpp" />
+    <ClCompile Include="EnemyDefaultTank.cpp" />
+    <ClCompile Include="EnemyFastTank.cpp" />
+    <ClCompile Include="EnemyPowerTank.cpp" />
     <ClCompile Include="EnemyTank.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameInstance.cpp" />
@@ -174,7 +178,11 @@
     <ClInclude Include="BonusTank.h" />
     <ClInclude Include="BonusThirdStar.h" />
     <ClInclude Include="BrickWall.h" />
+    <ClInclude Include="EnemyArmorTank.h" />
     <ClInclude Include="EnemyController.h" />
+    <ClInclude Include="EnemyDefaultTank.h" />
+    <ClInclude Include="EnemyFastTank.h" />
+    <ClInclude Include="EnemyPowerTank.h" />
     <ClInclude Include="EnemyTank.h" />
     <ClInclude Include="Framework.h" />
     <ClInclude Include="GameInstance.h" />

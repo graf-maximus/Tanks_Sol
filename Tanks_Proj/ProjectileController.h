@@ -15,14 +15,13 @@ class ProjectileController
 
 public:
 
-	ProjectileController();
 	ProjectileController(Tanks* owner);
 	~ProjectileController();
 	void spawnProjectile(float posX, float posY, FRKey direction);
 	void destroyProjectile(Projectile* projectile);
 	std::vector<Projectile*> getSpawnedProjectile();
 	bool needToSpawn();
-	void setSpeed(int speed);
+	void setSpeed(float speed);
 	void setPower(int power);
 	void setProjectileDefaultSpeed();
 	void setProjectileDefaultPower();

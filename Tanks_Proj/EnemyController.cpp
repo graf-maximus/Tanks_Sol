@@ -1,7 +1,10 @@
 #include "EnemyController.h"
-#include "BonusTank.h"
 #include "BonusSpawner.h"
 #include "GameInstance.h"
+#include "EnemyArmorTank.h"
+#include "EnemyDefaultTank.h"
+#include "EnemyFastTank.h"
+#include "EnemyPowerTank.h"
 
 EnemyController::EnemyController()
 {
@@ -17,7 +20,28 @@ EnemyTank* EnemyController::spawnNewEnemy(std::vector<Tanks*> tanks, Bonus*& bon
 	if (tanks.size() <= 1)
 	{
 		int shiftX = std::rand() % enemySpawners.size();
-		EnemyTank* newEnemy = new EnemyTank(enemySpawners.at(shiftX).first, enemySpawners.at(shiftX).second, false);
+		int tank = std::rand() % 4;
+		
+		EnemyTank* newEnemy = nullptr;
+
+		switch (tank)
+		{
+		case 0:
+			newEnemy = new EnemyDefaultTank(enemySpawners.at(shiftX).first, enemySpawners.at(shiftX).second, false);
+			break;
+		case 1:
+			newEnemy = new EnemyFastTank(enemySpawners.at(shiftX).first, enemySpawners.at(shiftX).second, false);
+			break;
+		case 2:
+			newEnemy = new EnemyPowerTank(enemySpawners.at(shiftX).first, enemySpawners.at(shiftX).second, false);
+			break;
+		case 3:
+			newEnemy = new EnemyArmorTank(enemySpawners.at(shiftX).first, enemySpawners.at(shiftX).second, false);
+			break;
+		default:
+			break;
+		}
+
 		newEnemy->setMoveDirection(static_cast<FRKey>(std::rand() % 4));
 
 		this->enemyCount++;
@@ -30,8 +54,8 @@ EnemyTank* EnemyController::spawnNewEnemy(std::vector<Tanks*> tanks, Bonus*& bon
 
 	for (int i = 0; i < this->enemySpawners.size(); i++)
 	{
-		if (this->IsFreeSpawn(tanks, enemySpawners.at(i).first, enemySpawners.at(i).second))
-			availableSpawners.push_back(std::make_pair(enemySpawners.at(i).first, enemySpawners.at(i).second));
+		if (this->IsFreeSpawn(tanks, this->enemySpawners.at(i).first, this->enemySpawners.at(i).second))
+			availableSpawners.push_back(std::make_pair(this->enemySpawners.at(i).first, this->enemySpawners.at(i).second));
 	}
 
 	if (!availableSpawners.empty())
@@ -39,8 +63,10 @@ EnemyTank* EnemyController::spawnNewEnemy(std::vector<Tanks*> tanks, Bonus*& bon
 		this->enemyCount++;
 
 		int shiftX = std::rand() % (availableSpawners.size());
+		int tank = std::rand() % 4;
 		
-		EnemyTank* newEnemy;
+		EnemyTank* newEnemy = nullptr;
+		bool isFlashing = false;
 		
 		if (this->enemyCount == 4 || this->enemyCount == 11 || this->enemyCount == 18)
 		{
@@ -49,10 +75,26 @@ EnemyTank* EnemyController::spawnNewEnemy(std::vector<Tanks*> tanks, Bonus*& bon
 				delete bonus;
 				bonus = nullptr;
 			}
-			newEnemy = new EnemyTank(availableSpawners.at(shiftX).first, availableSpawners.at(shiftX).second, true);
+			isFlashing = true;
 		}
-		else
-			newEnemy = new EnemyTank(availableSpawners.at(shiftX).first, availableSpawners.at(shiftX).second, false);
+		switch (tank)
+		{
+		case 0:
+			newEnemy = new EnemyDefaultTank(availableSpawners.at(shiftX).first, availableSpawners.at(shiftX).second, isFlashing);
+			break;
+		case 1:
+			newEnemy = new EnemyFastTank(availableSpawners.at(shiftX).first, availableSpawners.at(shiftX).second, isFlashing);
+			break;
+		case 2:
+			newEnemy = new EnemyPowerTank(availableSpawners.at(shiftX).first, availableSpawners.at(shiftX).second, isFlashing);
+			break;
+		case 3:
+			newEnemy = new EnemyArmorTank(availableSpawners.at(shiftX).first, availableSpawners.at(shiftX).second, isFlashing);
+			break;
+		default:
+			break;
+		}
+
 		newEnemy->setMoveDirection(static_cast<FRKey>(std::rand() % 4));
 
 		spawnTimer = getTickCount();
@@ -69,6 +111,7 @@ bool EnemyController::IsFreeSpawn(std::vector<Tanks*> tanks, int posX, int posY)
 		float tankPosX, tankPosY;
 		int tankW, tankH;
 		getSpriteSize(tanks.at(i)->getSprite(), tankW, tankH);
+
 
 		tanks.at(i)->getPosition(tankPosX, tankPosY);
 

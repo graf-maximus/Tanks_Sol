@@ -14,6 +14,7 @@ protected:
 
 public:
 
+	~GameRules();
 	virtual void setPosition(float x, float y);
 	virtual void getPosition(float& x, float& y);
 	virtual void setSprite(const char* filePath);

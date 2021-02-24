@@ -1,12 +1,11 @@
 ﻿#include "Framework.h"
 #include "GameInstance.h"
-#include "Map.h"
 #include <iostream>
 
 /* Test Framework realization */
 class MyFramework : public Framework {
 
-	int windowWidth = 480, windowHeight = 480;
+	int windowWidth, windowHeight;
 	GameInstance* game;
 	float clock = 0;
 	float time;
@@ -36,7 +35,7 @@ public:
 	}
 
 	virtual void Close() {
-
+		delete game;
 	}
 
 	virtual bool Tick() {
@@ -67,7 +66,11 @@ public:
 						game->tanks.at(i)->getProjectileController()->destroyProjectile(game->tanks.at(i)->getProjectileController()->getSpawnedProjectile().at(j));
 					
 						if (!game->player->getHealthController()->isAlive())
+						{
 							game->gameOver();
+							delete game;
+							return true;
+						}
 					}
 					else
 						game->tanks.at(i)->getProjectileController()->getSpawnedProjectile().at(j)->move(time);
@@ -83,6 +86,13 @@ public:
 
 		}
 
+		if (game->enemyController->needToSpawn())
+		{
+			EnemyTank* tank = game->enemyController->spawnNewEnemy(game->tanks, game->bonus, game->bonusSpawner);
+			if (tank != nullptr)
+				game->tanks.push_back(tank);
+		}
+
 		for (int i = 0; i < game->tanks.size(); i++)
 		{
 			game->tanks.at(i)->draw();
@@ -95,13 +105,6 @@ public:
 
 		if (game->phoenix != nullptr)
 			game->phoenix->draw();
-
-		if (game->enemyController->needToSpawn())
-		{
-			EnemyTank* tank = game->enemyController->spawnNewEnemy(game->tanks, game->bonus, game->bonusSpawner);
-			if (tank != nullptr)
-				game->tanks.push_back(tank);
-		}
 
 		if (game->bonus != nullptr && game->bonus->getSprite() != nullptr)
 			game->bonus->draw();

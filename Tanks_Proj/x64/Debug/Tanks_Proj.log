@@ -1,8 +1,8 @@
-﻿  ProjectileController.cpp
+﻿  EnemyArmorTank.cpp
 D:\doc\Tanks_Sol\Tanks_Proj\Tanks.h(11,20): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\doc\Tanks_Sol\Tanks_Proj\ProjectileController.h(11,24): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\doc\Tanks_Sol\Tanks_Proj\ProjectileController.h(12,21): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\doc\Tanks_Sol\Tanks_Proj\ProjectileController.cpp(23,16): warning C4101: 'spriteH': unreferenced local variable
-D:\doc\Tanks_Sol\Tanks_Proj\ProjectileController.cpp(23,7): warning C4101: 'spriteW': unreferenced local variable
-D:\doc\Tanks_Sol\Tanks_Proj\ProjectileController.cpp(87,34): warning C4018: '>=': signed/unsigned mismatch
+  EnemyFastTank.cpp
+D:\doc\Tanks_Sol\Tanks_Proj\Tanks.h(11,20): warning C4305: 'initializing': truncation from 'double' to 'float'
+  EnemyPowerTank.cpp
+D:\doc\Tanks_Sol\Tanks_Proj\Tanks.h(11,20): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Generating Code...
   Tanks_Proj.vcxproj -> D:\doc\Tanks_Sol\x64\Debug\Tanks_Proj.exe

@@ -111,6 +111,18 @@
     <ClCompile Include="BonusThirdStar.cpp">
       <Filter>Source Files\Bonus</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyPowerTank.cpp">
+      <Filter>Source Files\Tanks</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyArmorTank.cpp">
+      <Filter>Source Files\Tanks</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyFastTank.cpp">
+      <Filter>Source Files\Tanks</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyDefaultTank.cpp">
+      <Filter>Source Files\Tanks</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameRules.h">
@@ -172,6 +184,18 @@
     </ClInclude>
     <ClInclude Include="BonusThirdStar.h">
       <Filter>Header Files\Bonus</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyPowerTank.h">
+      <Filter>Header Files\Tanks</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyArmorTank.h">
+      <Filter>Header Files\Tanks</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyFastTank.h">
+      <Filter>Header Files\Tanks</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyDefaultTank.h">
+      <Filter>Header Files\Tanks</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

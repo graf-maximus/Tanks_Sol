@@ -24,6 +24,7 @@ public:
 	Bonus* bonus;
 
 	GameInstance();
+	~GameInstance();
 	bool createMap();
 	void spawnPlayer(int posX, int posY);
 	void addEnemyController(int posX, int posY);
