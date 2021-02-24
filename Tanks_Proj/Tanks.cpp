@@ -3,11 +3,12 @@
 #include "HealthController.h"
 #include "GameInstance.h"
 
-Tanks::Tanks(float posX, float posY, int health)
+Tanks::Tanks(float posX, float posY, int health, bool isFlashing)
 {
 	this->setPosition(posX, posY);
 	this->projectileController = new ProjectileController(this);
 	this->healthController = new HealthController(health);
+	this->isFlashing = isFlashing;
 }
 
 Tanks::~Tanks()
@@ -85,15 +86,57 @@ bool Tanks::checkIntersection(float time, GameInstance*& game)
 		}
 	}
 
+
+	if (this == game->player && game->bonus != nullptr)
+	{
+		float bonusPosX, bonusPosY;
+		int bonusW, bonusH;
+		game->bonus->getPosition(bonusPosX, bonusPosY);
+		getSpriteSize(game->bonus->getSprite(), bonusW, bonusH);
+
+		if (tank1PosX + tank1Width >= bonusPosX + 1 &&
+			tank1PosY + tank1Height >= bonusPosY + 1 &&
+			bonusPosX + bonusW >= tank1PosX + 1 &&
+			bonusPosY + bonusH >= tank1PosY + 1)
+		{
+			game->bonus->addBonus(this);
+			delete game->bonus;
+			game->bonus = nullptr;
+
+			return false;
+		}
+	}
+
 	return false;
+}
+
+bool Tanks::IsFlashing()
+{
+	return this->isFlashing;
+}
+
+bool Tanks::IsTierSecond()
+{
+	return this->isTierSecond;
+}
+
+void Tanks::setTier(int tier)
+{
+	if (tier == 2)
+		this->isTierSecond = true;
+	else
+		this->isTierSecond = false;
 }
 
 void Tanks::move(float time)
 {
+	int screenW, screenH;
+	getScreenSize(screenW, screenH);
+
 	switch (this->moveDirection)
 	{
 	case FRKey::RIGHT:
-		if (this->posX + this->currentSpeed * time <= 544)
+		if (this->posX + this->currentSpeed * time <= screenW - 32)
 			this->posX += this->currentSpeed * time;
 		break;
 	case FRKey::LEFT:
@@ -101,7 +144,7 @@ void Tanks::move(float time)
 			this->posX -= this->currentSpeed * time;
 		break;
 	case FRKey::DOWN:
-		if (this->posY + this->currentSpeed * time <= 480)
+		if (this->posY + this->currentSpeed * time <= screenH - 32)
 			this->posY += this->currentSpeed * time;
 		break;
 	case FRKey::UP:

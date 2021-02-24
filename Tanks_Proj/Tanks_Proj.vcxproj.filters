@@ -93,6 +93,24 @@
     <ClCompile Include="Phoenix.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="BonusSpawner.cpp">
+      <Filter>Source Files\Bonus</Filter>
+    </ClCompile>
+    <ClCompile Include="Bonus.cpp">
+      <Filter>Source Files\Bonus</Filter>
+    </ClCompile>
+    <ClCompile Include="BonusTank.cpp">
+      <Filter>Source Files\Bonus</Filter>
+    </ClCompile>
+    <ClCompile Include="BonusFirstStar.cpp">
+      <Filter>Source Files\Bonus</Filter>
+    </ClCompile>
+    <ClCompile Include="BonusSecondStar.cpp">
+      <Filter>Source Files\Bonus</Filter>
+    </ClCompile>
+    <ClCompile Include="BonusThirdStar.cpp">
+      <Filter>Source Files\Bonus</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameRules.h">
@@ -136,6 +154,24 @@
     </ClInclude>
     <ClInclude Include="Phoenix.h">
       <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="BonusSpawner.h">
+      <Filter>Header Files\Bonus</Filter>
+    </ClInclude>
+    <ClInclude Include="Bonus.h">
+      <Filter>Header Files\Bonus</Filter>
+    </ClInclude>
+    <ClInclude Include="BonusTank.h">
+      <Filter>Header Files\Bonus</Filter>
+    </ClInclude>
+    <ClInclude Include="BonusFirstStar.h">
+      <Filter>Header Files\Bonus</Filter>
+    </ClInclude>
+    <ClInclude Include="BonusSecondStar.h">
+      <Filter>Header Files\Bonus</Filter>
+    </ClInclude>
+    <ClInclude Include="BonusThirdStar.h">
+      <Filter>Header Files\Bonus</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

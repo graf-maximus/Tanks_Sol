@@ -145,6 +145,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bonus.cpp" />
+    <ClCompile Include="BonusFirstStar.cpp" />
+    <ClCompile Include="BonusSecondStar.cpp" />
+    <ClCompile Include="BonusSpawner.cpp" />
+    <ClCompile Include="BonusTank.cpp" />
+    <ClCompile Include="BonusThirdStar.cpp" />
     <ClCompile Include="BrickWall.cpp" />
     <ClCompile Include="EnemyController.cpp" />
     <ClCompile Include="EnemyTank.cpp" />
@@ -161,6 +167,12 @@
     <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bonus.h" />
+    <ClInclude Include="BonusFirstStar.h" />
+    <ClInclude Include="BonusSecondStar.h" />
+    <ClInclude Include="BonusSpawner.h" />
+    <ClInclude Include="BonusTank.h" />
+    <ClInclude Include="BonusThirdStar.h" />
     <ClInclude Include="BrickWall.h" />
     <ClInclude Include="EnemyController.h" />
     <ClInclude Include="EnemyTank.h" />

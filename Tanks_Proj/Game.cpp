@@ -6,12 +6,15 @@
 /* Test Framework realization */
 class MyFramework : public Framework {
 
-	int windowWidth = 544, windowHeight = 480;
+	int windowWidth = 480, windowHeight = 480;
 	GameInstance* game;
 	float clock = 0;
 	float time;
 
 public:
+
+	MyFramework(int windowWidth, int windowHeight)
+		: windowWidth(windowWidth), windowHeight(windowHeight) {}
 
 	virtual void PreInit(int& width, int& height, bool& fullscreen)
 	{
@@ -27,7 +30,7 @@ public:
 		if (!game->createMap())
 			return false;
 
-		game->tanks.push_back(game->enemyController->spawnNewEnemy(game->tanks));
+		game->tanks.push_back(game->enemyController->spawnNewEnemy(game->tanks, game->bonus, game->bonusSpawner));
 
 		return true;
 	}
@@ -55,33 +58,36 @@ public:
 			else
 				game->tanks.at(i)->move(time);
 
-			if (game->tanks.at(i)->getProjectileController()->getSpawnedProjectile() != nullptr)
+			for (int j = 0; j < game->tanks.at(i)->getProjectileController()->getSpawnedProjectile().size(); j++)
 			{
-				if (game->tanks.at(i)->getProjectileController()->getSpawnedProjectile()->checkIntersection(time, game))
+				if (game->tanks.at(i)->getProjectileController()->getSpawnedProjectile().at(j) != nullptr)
 				{
-					game->tanks.at(i)->getProjectileController()->destroyProjectile();
-					if (!game->player->getHealthController()->isAlive())
+					if (game->tanks.at(i)->getProjectileController()->getSpawnedProjectile().at(j)->checkIntersection(time, game))
 					{
-						game->gameOver();
-						Close();
+						game->tanks.at(i)->getProjectileController()->destroyProjectile(game->tanks.at(i)->getProjectileController()->getSpawnedProjectile().at(j));
+					
+						if (!game->player->getHealthController()->isAlive())
+							game->gameOver();
 					}
+					else
+						game->tanks.at(i)->getProjectileController()->getSpawnedProjectile().at(j)->move(time);
 				}
-				else
-					game->tanks.at(i)->getProjectileController()->getSpawnedProjectile()->move(time);
 			}
-			else if (game->tanks.at(i) != game->player && game->tanks.at(i)->getProjectileController()->needToSpawn())
+			
+			if (game->tanks.at(i) != game->player && game->tanks.at(i)->getProjectileController()->needToSpawn())
 			{
 				float posX, posY;
 				game->tanks.at(i)->getPosition(posX, posY);
 				game->tanks.at(i)->getProjectileController()->spawnProjectile(posX, posY, game->tanks.at(i)->getMoveDirection());
 			}
+
 		}
 
 		for (int i = 0; i < game->tanks.size(); i++)
 		{
 			game->tanks.at(i)->draw();
-			if (game->tanks.at(i)->getProjectileController()->getSpawnedProjectile() != nullptr)
-				game->tanks.at(i)->getProjectileController()->getSpawnedProjectile()->draw();
+			for (int j = 0; j < game->tanks.at(i)->getProjectileController()->getSpawnedProjectile().size(); j++)
+				game->tanks.at(i)->getProjectileController()->getSpawnedProjectile().at(j)->draw();
 		}
 
 		for (int i = 0; i < game->walls.size(); i++)
@@ -92,11 +98,14 @@ public:
 
 		if (game->enemyController->needToSpawn())
 		{
-			EnemyTank* tank = game->enemyController->spawnNewEnemy(game->tanks);
+			EnemyTank* tank = game->enemyController->spawnNewEnemy(game->tanks, game->bonus, game->bonusSpawner);
 			if (tank != nullptr)
 				game->tanks.push_back(tank);
 		}
-		
+
+		if (game->bonus != nullptr && game->bonus->getSprite() != nullptr)
+			game->bonus->draw();
+
 
 		time = getTickCount();
 
@@ -142,5 +151,35 @@ public:
 
 int main(int argc, char* argv[])
 {
-	return run(new MyFramework);
+	int screenWidth = 480, screenHeight = 480;
+	if (argc > 1)
+	{
+		screenWidth = 0; screenHeight = 0;
+
+		for (int i = 1; i < argc; i += 2)
+		{
+			if (!strcmp(argv[i], "-window"))
+			{
+				std::string screenSize = argv[i + 1];
+
+				while (isdigit(screenSize.front()))
+				{
+					screenWidth *= 10;
+					screenWidth += (screenSize.front() - '0');
+					screenSize.erase(screenSize.begin());
+				}
+				screenSize.erase(screenSize.begin());
+				while (isdigit(screenSize.front()))
+				{
+					screenWidth *= 10;
+					screenHeight += (screenSize.front() - '0');
+					screenSize.erase(screenSize.begin());
+				}
+
+				break;
+			}
+		}
+	}
+
+	return run(new MyFramework(screenWidth, screenHeight));
 }

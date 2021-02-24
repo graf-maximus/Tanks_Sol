@@ -8,13 +8,14 @@ class GameInstance;
 
 class Projectile : public GameRules
 {
-	float projectileSpeed = 0.4;
 	Tanks* owner;
 	const char* projectileFilePath = ".\\data\\bullet.png";
+	int bulletPower;
 
 public:
 
-	Projectile(float posX, float posY, FRKey moveDirection, Tanks* owner);
+	Projectile(float posX, float posY, FRKey moveDirection, Tanks* owner, float projectileSpeed, int bulletPower);
 	~Projectile();
 	bool checkIntersection(float time, GameInstance*& game);
+	int getProjectilePower();
 };

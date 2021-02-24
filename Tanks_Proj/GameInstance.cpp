@@ -5,6 +5,7 @@
 GameInstance::GameInstance()
 {
 	this->enemyController = new EnemyController();
+	this->bonusSpawner = new BonusSpawner();
 }
 
 void GameInstance::spawnPlayer(int posX, int posY)
@@ -20,6 +21,14 @@ void GameInstance::addEnemyController(int posX, int posY)
 		this->enemyController = new EnemyController();
 
 	enemyController->addEnemySpawner(posX, posY);
+}
+
+void GameInstance::addBonusSpawn(int posX, int posY)
+{
+	if (this->bonusSpawner == nullptr)
+		this->bonusSpawner = new BonusSpawner();
+
+	bonusSpawner->addBonusSpawner(posX, posY);
 }
 
 void GameInstance::spawnWall(char wallSymbol, int posX, int posY)
@@ -81,6 +90,9 @@ bool GameInstance::createMap()
 						break;
 					case 'P':
 						this->spawnPhoenix(j, i);
+						break;
+					case 'B':
+						this->addBonusSpawn(j, i);
 						break;
 					default:
 						break;

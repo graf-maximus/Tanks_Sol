@@ -4,41 +4,18 @@
 #include "GameInstance.h"
 #include <iostream>
 
-Projectile::Projectile(float posX, float posY, FRKey moveDirection, Tanks* owner)
+Projectile::Projectile(float posX, float posY, FRKey direction, Tanks* owner, float projectileSpeed, int bulletPower)
 {
-	this->moveDirection = moveDirection;
 	this->posX = posX;
 	this->posY = posY;
-	this->setSpeed(0.4);
+	this->setSpeed(projectileSpeed);
+	this->setMoveDirection(direction);
 	this->owner = owner;
 	this->setSprite(projectileFilePath);
+	this->bulletPower = bulletPower;
 
 	int tankSpriteSizeWidth, tankSpriteSizeHeight;
 	getSpriteSize(this->owner->getSprite(), tankSpriteSizeWidth, tankSpriteSizeHeight);
-
-	switch (moveDirection)
-	{
-	case FRKey::RIGHT:
-		owner->getPosition(this->posX, this->posY);
-		this->posX += tankSpriteSizeWidth;
-		this->posY += tankSpriteSizeHeight / 2;
-		break;
-	case FRKey::LEFT:
-		owner->getPosition(this->posX, this->posY);
-		this->posY += tankSpriteSizeHeight / 2;
-		break;
-	case FRKey::DOWN:
-		owner->getPosition(this->posX, this->posY);
-		this->posX += tankSpriteSizeWidth / 2;
-		this->posY += tankSpriteSizeHeight;
-		break;
-	case FRKey::UP:
-		owner->getPosition(this->posX, this->posY);
-		this->posX += tankSpriteSizeWidth / 2;
-		break;
-	default:
-		break;
-	}
 }
 
 Projectile::~Projectile()
@@ -49,84 +26,20 @@ Projectile::~Projectile()
 
 bool Projectile::checkIntersection(float time, GameInstance*& game)
 {
+	float projectilePosX, projectilePosY, objPosX, objPosY;
+	int projectileWidth, projectileHeight, objWidth, objHeight;
+	this->getPosition(projectilePosX, projectilePosY);
 
-
-
-
-	float objPosX, objPosY, wallPosX, wallPosY;
-	int objWidth, objHeight, wallWidth, wallHeight;
-	this->getPosition(objPosX, objPosY);
-
-	getSpriteSize(this->getSprite(), objWidth, objHeight);
-
-	switch (this->getMoveDirection())
-	{
-	case FRKey::RIGHT:
-		objPosX += this->getSpeed() * time;
-		break;
-	case FRKey::LEFT:
-		objPosX -= this->getSpeed() * time;
-		break;
-	case FRKey::DOWN:
-		objPosY += this->getSpeed() * time;
-		break;
-	case FRKey::UP:
-		objPosY -= this->getSpeed() * time;
-		break;
-	default:
-		break;
-	}
-
-	getSpriteSize(game->phoenix->getSprite(), wallWidth, wallHeight);
-	game->phoenix->getPosition(wallPosX, wallPosY);
-
-	if (objPosX + objWidth >= wallPosX + 1 &&
-		objPosY + objHeight >= wallPosY + 1 &&
-		wallPosX + wallWidth >= objPosX + 1 &&
-		wallPosY + wallHeight >= objPosY + 1)
-	{
-		game->gameOver();
-
-		return true;
-	}
-
-	for (int i = 0; i < game->walls.size(); i++)
-	{
-		getSpriteSize(game->walls.at(i)->getSprite(), wallWidth, wallHeight);
-		game->walls.at(i)->getPosition(wallPosX, wallPosY);
-
-		if (objPosX + objWidth >= wallPosX + 1 &&
-			objPosY + objHeight >= wallPosY + 1 &&
-			wallPosX + wallWidth >= objPosX + 1 &&
-			wallPosY + wallHeight >= objPosY + 1)
-		{
-			game->walls.at(i)->getHealthController()->changeLife(-1);
-			if (!game->walls.at(i)->getHealthController()->isAlive())
-				game->walls.erase(game->walls.begin() + i);
-
-			return true;
-		}
-	}
-
-
-
-
-
-
+	getSpriteSize(this->getSprite(), projectileWidth, projectileHeight);
 
 	if (this != nullptr)
 	{
-		float posX, posY;
-		this->getPosition(posX, posY);
+		int screenW, screenH;
+		getScreenSize(screenW, screenH);
 
-		if (posX <= 0 || posX >= 544 || posY <= 0 || posY >= 480)
+		if (projectilePosX <= 0 || projectilePosX >= screenW || projectilePosY <= 0 || projectilePosY >= screenH)
 			return true;
 	}
-
-	float tankPosX, tankPosY, projectilePosX, projectilePosY;
-	int tankWidth, tankHeight, projectileWidth, projectileHeight;
-	getSpriteSize(this->getSprite(), projectileWidth, projectileHeight);
-	this->getPosition(projectilePosX, projectilePosY);
 
 	switch (this->getMoveDirection())
 	{
@@ -146,17 +59,54 @@ bool Projectile::checkIntersection(float time, GameInstance*& game)
 		break;
 	}
 
+	getSpriteSize(game->phoenix->getSprite(), objWidth, objHeight);
+	game->phoenix->getPosition(objPosX, objPosY);
+
+	if (projectilePosX + projectileWidth >= objPosX + 1 &&
+		projectilePosY + projectileHeight >= objPosY + 1 &&
+		objPosX + objWidth >= projectilePosX + 1 &&
+		objPosY + objHeight >= projectilePosY + 1)
+	{
+		game->gameOver();
+		return true;
+	}
+
+	for (int i = 0; i < game->walls.size(); i++)
+	{
+		getSpriteSize(game->walls.at(i)->getSprite(), objWidth, objHeight);
+		game->walls.at(i)->getPosition(objPosX, objPosY);
+
+		if (projectilePosX + projectileWidth >= objPosX + 1 &&
+			projectilePosY + projectileHeight >= objPosY + 1 &&
+			objPosX + objWidth >= projectilePosX + 1 &&
+			objPosY + objHeight >= projectilePosY + 1)
+		{
+			if (game->walls.at(i)->IsWallBrick())
+				game->walls.at(i)->getHealthController(static_cast<int>(this->getMoveDirection()))->changeLife(-this->bulletPower);
+			else if (this->bulletPower > 1)
+				game->walls.at(i)->getHealthController(static_cast<int>(this->getMoveDirection()))->changeLife(-2);
+
+			if (!game->walls.at(i)->getHealthController(static_cast<int>(this->getMoveDirection()))->isAlive())
+				game->walls.erase(game->walls.begin() + i);
+			return true;
+		}
+	}
+
 	if (this->owner != game->player)
 	{
-		game->player->getPosition(tankPosX, tankPosY);
-		getSpriteSize(game->player->getSprite(), tankWidth, tankHeight);
+		game->player->getPosition(objPosX, objPosY);
+		getSpriteSize(game->player->getSprite(), objWidth, objHeight);
 
-		if (tankPosX + tankWidth >= projectilePosX + 1 &&
-			tankPosY + tankHeight >= projectilePosY + 1 &&
-			projectilePosX + projectileWidth >= tankPosX + 1 &&
-			projectilePosY + projectileHeight >= tankPosY + 1)
+		if (objPosX + objWidth >= projectilePosX + 1 &&
+			objPosY + objHeight >= projectilePosY + 1 &&
+			projectilePosX + projectileWidth >= objPosX + 1 &&
+			projectilePosY + projectileHeight >= objPosY + 1)
 		{
 			game->player->getHealthController()->changeLife(-1);
+			game->player->setPosition(game->player->getDefaultPosX(), game->player->getDefaultPosY());
+			game->player->getProjectileController()->setProjectileDefaultSpeed();
+			game->player->setTier(1);
+			game->player->getProjectileController()->setProjectileDefaultPower();
 			return true;
 		}
 	}
@@ -166,14 +116,17 @@ bool Projectile::checkIntersection(float time, GameInstance*& game)
 		{
 			if (game->tanks.at(i) != game->player)
 			{
-				game->tanks.at(i)->getPosition(tankPosX, tankPosY);
-				getSpriteSize(game->tanks.at(i)->getSprite(), tankWidth, tankHeight);
+				game->tanks.at(i)->getPosition(objPosX, objPosY);
+				getSpriteSize(game->tanks.at(i)->getSprite(), objWidth, objHeight);
 
-				if (tankPosX + tankWidth >= projectilePosX + 1 &&
-					tankPosY + tankHeight >= projectilePosY + 1 &&
-					projectilePosX + projectileWidth >= tankPosX + 1 &&
-					projectilePosY + projectileHeight >= tankPosY + 1)
+				if (objPosX + objWidth >= projectilePosX + 1 &&
+					objPosY + objHeight >= projectilePosY + 1 &&
+					projectilePosX + projectileWidth >= objPosX + 1 &&
+					projectilePosY + projectileHeight >= objPosY + 1)
 				{
+					if (game->tanks.at(i)->IsFlashing())
+						game->bonus = game->bonusSpawner->spawnBonus(game->tanks);
+
 					game->tanks.at(i)->getHealthController()->changeLife(-1);
 					if (!game->tanks.at(i)->getHealthController()->isAlive())
 						game->tanks.erase(game->tanks.begin() + i);
@@ -185,4 +138,9 @@ bool Projectile::checkIntersection(float time, GameInstance*& game)
 	}
 
 	return false;
+}
+
+int Projectile::getProjectilePower()
+{
+	return this->bulletPower;
 }

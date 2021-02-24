@@ -7,7 +7,7 @@ class EnemyTank : public Tanks
 
 public:
 
-	EnemyTank(float posX, float posY);
+	EnemyTank(float posX, float posY, bool isFlashing);
 	~EnemyTank();
 	void move(float time);
 	void setMoveDirection(FRKey direction);

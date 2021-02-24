@@ -1,8 +1,8 @@
 #include "EnemyTank.h"
 #include "ProjectileController.h"
 
-EnemyTank::EnemyTank(float posX, float posY)
-	: Tanks(posX, posY, 1)
+EnemyTank::EnemyTank(float posX, float posY, bool isFlashing)
+	: Tanks(posX, posY, 1, isFlashing)
 {
 	this->tankRIGHTFilePath = ".\\data\\EnemyTank\\EnemyTankRIGHT.png";
 	this->tankLEFTFilePath = ".\\data\\EnemyTank\\EnemyTankLEFT.png";
@@ -43,7 +43,7 @@ void EnemyTank::setMoveDirection(FRKey direction)
 
 void EnemyTank::spawnProjectile(float time)
 {
-	if (this->getProjectileController()->getSpawnedProjectile() == nullptr)
+	if (this->getProjectileController()->getSpawnedProjectile().empty())
 		this->getProjectileController()->spawnProjectile(this->posX, this->posY, this->moveDirection);
 }
 

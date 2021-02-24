@@ -2,16 +2,27 @@
 #include "ProjectileController.h"
 
 PlayerTank::PlayerTank(float posX, float posY)
-	: Tanks(posX, posY, 1)
+	: Tanks(posX, posY, 1, false)
 {
+	this->defaultPosX = posX;
+	this->defaultPosY = posY;
 	this->tankRIGHTFilePath = ".\\data\\PlayerTank\\PlayerTankRIGHT.png";
 	this->tankLEFTFilePath = ".\\data\\PlayerTank\\PlayerTankLEFT.png";
 	this->tankUPFilePath = ".\\data\\PlayerTank\\PlayerTankUP.png";
 	this->tankDOWNFilePath = ".\\data\\PlayerTank\\PlayerTankDOWN.png";
-	//	this->setMoveDirection(FRKey::UP);
+}
+
+int PlayerTank::getDefaultPosX()
+{
+	return this->defaultPosX;
+}
+
+int PlayerTank::getDefaultPosY()
+{
+	return this->defaultPosY;
 }
 
 PlayerTank::~PlayerTank()
 {
-	delete projectileController;
+	delete this->projectileController;
 }
